@@ -7,6 +7,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'listen'
 gem 'foundation-rails'
+gem 'font-awesome-sass'
 group :development, :test do
   gem 'capybara'
   gem 'factory_girl_rails'
