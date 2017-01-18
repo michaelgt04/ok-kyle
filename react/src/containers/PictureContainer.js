@@ -6,12 +6,13 @@ class PictureContainer extends Component {
     super(props)
     this.state = {
       currentPicture: 0,
-      pictures: {}
+      pictures: []
     }
+    this.swipeLeft = this.swipeLeft.bind(this)
   }
 
   swipeLeft(){
-    let nextPicture = curentPicture ++
+    let nextPicture = this.state.currentPicture + 1
     this.setState({ currentPicture: nextPicture})
   }
 
@@ -20,15 +21,30 @@ class PictureContainer extends Component {
   }
 
   componentDidMount(){
-
+    $.ajax({
+        method: "GET",
+        url: "/api/v1/kyles",
+      })
+      .done(data => {
+        this.setState({
+          pictures: data
+        });
+      })
   }
 
   render(){
+    let kyle_url
+    if (this.state.pictures[this.state.currentPicture]){
+      kyle_url = this.state.pictures[this.state.currentPicture].image_url
+    } else {
+      kyle_url = ""
+    }
+
     return(
       <div className="row full-screen">
-        <span className="fa fa-arrow-left columns small-2 full-screen center align-middle" />
-        <PictureTile />
-        <span className="fa fa-arrow-right columns small-2 right full-screen center align-middle" />
+        <span className="full-screen fa fa-arrow-left columns small-2 full-screen center align-middle" onClick={this.swipeLeft} />
+        <PictureTile url={kyle_url} />
+        <span className="full-screen fa fa-arrow-right columns small-2 right full-screen center align-middle" />
       </div>
     )
   }
