@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: ok-kyle_production
-  username: ok-kyle
+  username: ok-kyle-1
   password: <%= ENV['DAYTRIPPER-1_DATABASE_PASSWORD'] %>

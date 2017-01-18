@@ -10,6 +10,7 @@ gem 'foundation-rails'
 gem 'dotenv-rails'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'font-awesome-sass'
 group :development, :test do
   gem 'capybara'
   gem 'factory_girl_rails'
