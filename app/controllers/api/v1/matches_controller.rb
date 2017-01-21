@@ -16,6 +16,13 @@ class Api::V1::MatchesController < ApplicationController
     end
   end
 
+  def create
+    data = JSON.parse(request.body.read)
+    kyle = Kyle.find(data["id"])
+    Match.create(user: current_user, kyle: kyle)
+    render json: kyle
+  end
+
   private
 
   def get_kyles(match_array)
@@ -28,10 +35,4 @@ class Api::V1::MatchesController < ApplicationController
     return kyle_matches
   end
 
-  def create
-    data = JSON.parse(request.body.read)
-    kyle = Kyle.find(data["id"])
-    Match.create(user: current_user, kyle: kyle)
-    render json: kyle
-  end
 end
