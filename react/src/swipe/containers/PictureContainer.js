@@ -14,7 +14,12 @@ class PictureContainer extends Component {
   }
 
   swipeLeft(){
-    let nextPicture = this.state.currentPicture + 1
+    let nextPicture;
+    if (this.state.currentPicture < this.state.pictures.length - 1){
+      nextPicture = this.state.currentPicture + 1
+    } else {
+      nextPicture = 0
+    }
     this.setState({ currentPicture: nextPicture, alert: ""})
   }
 
@@ -30,7 +35,12 @@ class PictureContainer extends Component {
         return kyle
       }).then((response) => {
         let name = response.name
-        let nextPicture = this.state.currentPicture + 1
+        let nextPicture;
+        if (this.state.currentPicture < this.state.pictures.length - 1){
+          nextPicture = this.state.currentPicture + 1
+        } else {
+          nextPicture = 0
+        }
         this.setState({ alert: `You've been matched with ${name}, the Kyle of your dreams.`, currentPicture: nextPicture })
       })
   }
@@ -57,10 +67,10 @@ class PictureContainer extends Component {
 
     return(
       <div className="row full-screen">
-        <h3>{this.state.alert}</h3>
-        <span className="full-screen fa fa-arrow-left columns small-2 full-screen center align-middle" onClick={this.swipeLeft} />
+        <h3 className="columns small-centered">{this.state.alert}</h3>
+        <div className="full-screen columns small-2 full-screen center align-middle" onClick={this.swipeLeft} />
         <PictureTile url={kyle_url} />
-        <span className="full-screen fa fa-arrow-right columns small-2 right full-screen center align-middle" onClick={this.swipeRight}/>
+        <div className="full-screen columns small-2 right full-screen center align-middle" onClick={this.swipeRight}/>
       </div>
     )
   }
