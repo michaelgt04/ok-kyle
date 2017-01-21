@@ -9,3 +9,10 @@ $(function() {
     document.getElementById('app')
   );
 });
+
+$(function() {
+  ReactDOM.render(
+    <UserProfile />,
+    document.getElementById('user-profile')
+  );
+});
