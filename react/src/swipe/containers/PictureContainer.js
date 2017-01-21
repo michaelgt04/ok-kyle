@@ -9,6 +9,7 @@ class PictureContainer extends Component {
       pictures: []
     }
     this.swipeLeft = this.swipeLeft.bind(this)
+    this.swipeRight = this.swipeRight.bind(this)
   }
 
   swipeLeft(){
@@ -17,7 +18,15 @@ class PictureContainer extends Component {
   }
 
   swipeRight(){
-
+    let kyleId = this.state.pictures[this.state.currentPicture].id
+    let fetchBody = { id: kyleId }
+    fetch('/api/v1/matches',
+      { method: "POST",
+      body: JSON.stringify(fetchBody),
+      credentials: 'include' })
+      .then(function(response) {
+        debugger;
+      })
   }
 
   componentDidMount(){
@@ -44,7 +53,7 @@ class PictureContainer extends Component {
       <div className="row full-screen">
         <span className="full-screen fa fa-arrow-left columns small-2 full-screen center align-middle" onClick={this.swipeLeft} />
         <PictureTile url={kyle_url} />
-        <span className="full-screen fa fa-arrow-right columns small-2 right full-screen center align-middle" />
+        <span className="full-screen fa fa-arrow-right columns small-2 right full-screen center align-middle" onClick={this.swipeRight}/>
       </div>
     )
   }
