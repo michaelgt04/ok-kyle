@@ -5,7 +5,7 @@ const MatchTile = props => {
     <div>
       <img src={props.image}/>
       <h3>{props.name}</h3>
-      <a href="#">Unmatch this Kyle</a>
+      <button onClick={props.unmatchKyle}>Unmatch this Kyle</button>
     </div>
   )
 }
