@@ -27,4 +27,10 @@ class Api::V1::MatchesController < ApplicationController
     end
     return kyle_matches
   end
+
+  def create
+    data = JSON.parse(request.body.read)
+    kyle = Kyle.find(data["id"])
+    Match.create(user: current_user, kyle: kyle)
+  end
 end
