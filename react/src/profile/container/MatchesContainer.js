@@ -7,17 +7,8 @@ class MatchesContainer extends Component {
     this.state = {
       matches: []
     }
-    // this.swipeLeft = this.swipeLeft.bind(this)
+    this.unmatchKyle = this.unmatchKyle.bind(this)
   }
-
-  // swipeLeft(){
-  //   let nextPicture = this.state.currentPicture + 1
-  //   this.setState({ currentPicture: nextPicture})
-  // }
-  //
-  // swipeRight(){
-  //
-  // }
 
   componentDidMount(){
     $.ajax({
@@ -31,8 +22,22 @@ class MatchesContainer extends Component {
       })
   }
 
+  unmatchKyle(id){
+    fetch(`/api/v1/matches/${id}`,
+    { method: "DELETE",
+    credentials: 'include'})
+    .then(function(response) {
+        let newMatches = response.json()
+        return newMatches
+      }).then((response) => this.setState({
+        matches: response,
+      }))}
+
   render(){
     let matches = this.state.matches.map(match =>{
+      let unmatchKyle = () => {
+        this.unmatchKyle(match.match_id)
+      }
 
       return(
         <MatchTile
@@ -41,6 +46,7 @@ class MatchesContainer extends Component {
           kyleId={match.kyle_id}
           name={match.name}
           image={match.image}
+          unmatchKyle={unmatchKyle}
         />
       )
 
