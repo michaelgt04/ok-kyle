@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :kyles, only: [:index]
-      resources :matches, only: [:index]
+      resources :matches, only: [:index, :create]
     end
   end
 end
