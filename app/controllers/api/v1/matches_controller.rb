@@ -9,5 +9,6 @@ class Api::V1::MatchesController < ApplicationController
     data = JSON.parse(request.body.read)
     kyle = Kyle.find(data["id"])
     Match.create(user: current_user, kyle: kyle)
+    render json: kyle
   end
 end

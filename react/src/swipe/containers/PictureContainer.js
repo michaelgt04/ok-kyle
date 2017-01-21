@@ -6,7 +6,8 @@ class PictureContainer extends Component {
     super(props)
     this.state = {
       currentPicture: 0,
-      pictures: []
+      pictures: [],
+      alert: ""
     }
     this.swipeLeft = this.swipeLeft.bind(this)
     this.swipeRight = this.swipeRight.bind(this)
@@ -14,7 +15,7 @@ class PictureContainer extends Component {
 
   swipeLeft(){
     let nextPicture = this.state.currentPicture + 1
-    this.setState({ currentPicture: nextPicture})
+    this.setState({ currentPicture: nextPicture, alert: ""})
   }
 
   swipeRight(){
@@ -24,8 +25,13 @@ class PictureContainer extends Component {
       { method: "POST",
       body: JSON.stringify(fetchBody),
       credentials: 'include' })
-      .then(function(response) {
-        debugger;
+      .then((response) => {
+        let kyle = response.json()
+        return kyle
+      }).then((response) => {
+        let name = response.name
+        let nextPicture = this.state.currentPicture + 1
+        this.setState({ alert: `You've been matched with ${name}, the Kyle of your dreams.`, currentPicture: nextPicture })
       })
   }
 
@@ -51,6 +57,7 @@ class PictureContainer extends Component {
 
     return(
       <div className="row full-screen">
+        <h3>{this.state.alert}</h3>
         <span className="full-screen fa fa-arrow-left columns small-2 full-screen center align-middle" onClick={this.swipeLeft} />
         <PictureTile url={kyle_url} />
         <span className="full-screen fa fa-arrow-right columns small-2 right full-screen center align-middle" onClick={this.swipeRight}/>
