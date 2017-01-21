@@ -1,4 +1,8 @@
 // @import "*";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-@import "style"
+@import "style";
+
+.header li {
+  display: inline
+}

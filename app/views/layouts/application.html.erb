@@ -12,6 +12,27 @@
   </head>
 
   <body>
+    <% if current_user %>
+      <header>
+        <ul class="header">
+          <li>
+            <img src=<%=current_user.image %>/>
+          </li>
+          <li>
+            <%=current_user.name %>
+          </li>
+          <li class="right">
+            <%=link_to "Profile", users_path %>
+          </li>
+          <li class="right">
+            <%=link_to "Find my Kyle", ok_kyle_path %>
+          </li>
+          <li class="right">
+            <%=link_to "Sign Out", signout_path %>
+          </li>
+        </ul>
+      </header>
+    <% end %>
     <%= flash[:notice] %>
 
     <%= yield %>
