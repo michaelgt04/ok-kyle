@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'auth/failure'
 
   resources :users, only: [:index]
+  resources :admins, only: [:index]
 
   get 'ok-kyle' => "static_pages#index"
 
@@ -13,7 +14,7 @@ Rails.application.routes.draw do
       resources :kyles, only: [:index]
       resources :matches, only: [:index, :destroy, :create]
       resources :users, only: [:index]
-
+      resources :admins, only: [:index]
     end
   end
 end
