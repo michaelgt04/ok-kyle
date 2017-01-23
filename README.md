@@ -25,7 +25,7 @@ site and start swiping!f
   Enjoy the lightening quick response time of a React application so that you can view
   more Kyles in less time
 
-* Sinatra Back-end
+* Ruby on Rails Back-end
 
-  The ultra-lightweight Sinatra back-end ensures quick load times so that OK Kyle can be
-  used on more devices even when cellphone reception isn't great
+  Built on the powerful and reliable Rails framework, OK Kyle's growingly complex
+  feature set will run efficiently and effectively for a stable user experience.
