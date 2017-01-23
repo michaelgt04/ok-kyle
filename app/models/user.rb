@@ -8,4 +8,7 @@ class User < ApplicationRecord
       user.image = auth["info"]["image"]
     end
   end
+
+  has_many :matches
+  has_many :kyles, through: :matches
 end

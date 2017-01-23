@@ -8,6 +8,8 @@ class Api::V1::UsersController < ApplicationController
     render json: kyle_json
   end
 
+  private
+
   def get_kyles(match_array)
     kyle_matches = []
     match_array.each do |match|
