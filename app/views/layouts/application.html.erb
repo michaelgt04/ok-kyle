@@ -13,25 +13,23 @@
 
   <body>
     <% if current_user %>
-      <header>
-        <ul class="header">
-          <li>
-            <img src=<%=current_user.image %>/>
-          </li>
-          <li>
-            <%=current_user.name %>
-          </li>
-          <li class="right">
-            <%=link_to "Profile", users_path %>
-          </li>
-          <li class="right">
-            <%=link_to "Find my Kyle", ok_kyle_path %>
-          </li>
-          <li class="right">
-            <%=link_to "Sign Out", signout_path %>
-          </li>
-        </ul>
-      </header>
+      <div class="row">
+        <div class="columns small-2 center">
+          <img src=<%=current_user.image %>/>
+        </div>
+        <div class="nav columns small-2 center">
+          <%=current_user.name %>
+        </div>
+        <div class="nav columns small-2 center">
+          <%=link_to "Profile", users_path %>
+        </div>
+        <div class="nav columns small-2 center">
+          <%=link_to "Find my Kyle", ok_kyle_path %>
+        </div>
+        <div class="nav columns small-2 center">
+          <%=link_to "Sign Out", signout_path %>
+        </div>
+      </div>
     <% end %>
     <%= flash[:notice] %>
 
