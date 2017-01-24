@@ -1,8 +1,10 @@
 import React from 'react';
 
 const PictureTile = props => {
+  let pictureClasses = "picture columns large-6 medium-8 small-10"
+
   return(
-    <img className="full-screen columns small-8" src={props.url} />
+    <img className={pictureClasses} src={props.url} />
   )
 }
 

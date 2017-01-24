@@ -65,12 +65,23 @@ class PictureContainer extends Component {
       kyle_url = ""
     }
 
+    let notice;
+    if (this.state.alert){
+      notice = "flash"
+    } else {
+      notice = "placeholder"
+    }
+
     return(
       <div className="row full-screen">
-        <h3 className="columns small-8 small-centered">{this.state.alert}</h3>
-        <div className="full-screen columns small-2 full-screen center align-middle" onClick={this.swipeLeft} />
-        <PictureTile url={kyle_url} />
-        <div className="full-screen columns small-2 right full-screen center align-middle" onClick={this.swipeRight}/>
+        <div className= "row">
+          <h5 className={notice}>{this.state.alert}</h5>
+        </div>
+        <div className= "row">
+          <div className="full-screen columns small-1 medium-2 large-3" onClick={this.swipeLeft} />
+          <PictureTile url={kyle_url} />
+          <div className="full-screen columns small-1 medium-2 large-3" onClick={this.swipeRight}/>
+        </div>
       </div>
     )
   }

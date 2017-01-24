@@ -7,7 +7,28 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "style";
+@import url('https://fonts.googleapis.com/css?family=Montserrat:700');
+@import url('https://fonts.googleapis.com/css?family=Raleway:700');
 
-.header li {
-  display: inline
+body {
+  background-color: #F1F1EF;
+}
+
+
+.flash {
+  background: rgba(330, 130, 75, .85);
+  color: #F1F1EF;
+  text-align: center;
+  width: 100%;
+  font-family: 'Montserrat', serif;
+  height: 4.25vh;
+}
+
+.placeholder {
+  height: 4.25vh
+}
+
+.picture {
+  object-fit: cover;
+  height: 80vh;
 }
