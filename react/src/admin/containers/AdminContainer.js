@@ -28,7 +28,6 @@ class AdminContainer extends Component {
     credentials: 'include'})
     .then(function(response) {
         let newMatches = response.json()
-        debugger;
         return newMatches
       }).then((response) => {
         this.setState({
@@ -47,7 +46,7 @@ class AdminContainer extends Component {
           key={match.match_id}
           id={match.match_id}
           userId={match.user_id}
-          name={match.user_name}
+          userName={match.user_name}
           userImage={match.user_image}
           unmatchUser={unmatchUser}
         />
