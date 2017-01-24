@@ -3,8 +3,8 @@ import React from 'react';
 const MatchTile = props => {
   return(
     <div>
-      <img src={props.image}/>
-      <h3>{props.name}</h3>
+      <img src={props.kyleImage}/>
+      <h3>{props.kyleName}</h3>
       <button onClick={props.unmatchKyle}>Unmatch this Kyle</button>
     </div>
   )

@@ -9,6 +9,10 @@ class User < ApplicationRecord
     end
   end
 
+  def admin?
+    false
+  end
+
   has_many :matches
   has_many :kyles, through: :matches
 end

@@ -38,8 +38,7 @@ class Api::V1::MatchesController < ApplicationController
     user_matches = []
     match_array.each do |match|
       user = match.user
-      match_object = { match_id: match.id, user_id: user.id, name: user.name, image: user.image }
-      binding.pry
+      match_object = { match_id: match.id, user_id: user.id, user_name: user.name, user_image: user.image }
       user_matches << match_object
     end
     return user_matches
@@ -49,10 +48,9 @@ class Api::V1::MatchesController < ApplicationController
     kyle_matches = []
     match_array.each do |match|
       kyle = match.kyle
-      match_object = { match_id: match.id, kyle_id: kyle.id, name: kyle.name, image: kyle.image_url  }
+      match_object = { match_id: match.id, kyle_id: kyle.id, kyle_name: kyle.name, kyle_image: kyle.image_url  }
       kyle_matches << match_object
     end
     return kyle_matches
   end
-
 end
