@@ -7,7 +7,29 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import "style";
+@import url('https://fonts.googleapis.com/css?family=Montserrat:700');
+
+body {
+  background-color: #F1F1EF;
+}
 
 .header li {
-  display: inline
+  display: inline;
+  margin-right: 7rem;
+}
+
+.flash {
+  background: rgba(330, 130, 75, .85);
+  color: #F1F1EF;
+  text-align: center;
+  width: 100%;
+  font-family: 'Montserrat', serif;
+}
+
+.picture {
+
+}
+
+.nav {
+
 }
