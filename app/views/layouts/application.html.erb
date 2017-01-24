@@ -13,6 +13,8 @@
   </head>
 
   <body>
+
+
     <% if current_user %>
       <div class="top-bar">
         <ul class="dropdown menu" data-dropdown-menu>
@@ -22,14 +24,16 @@
           <li class="menu-text">
             <%=current_user.name %>
           </li>
-          <li class="menu-text">
-            <%=link_to "Profile", users_path %>
-          </li>
-          <li class="menu-text">
-            <%=link_to "Match", ok_kyle_path %>
-          </li>
-          <li class="menu-text">
-            <%=link_to "Log Out", signout_path %>
+          <% unless current_user.admin? %>
+            <li class="right">
+              <%=link_to "Profile", users_path %>
+            </li>
+            <li class="right">
+              <%=link_to "Find my Kyle", ok_kyle_path %>
+            </li>
+          <% end %>
+          <li class="right">
+            <%=link_to "Sign Out", signout_path %>
           </li>
         </ul>
       </div>

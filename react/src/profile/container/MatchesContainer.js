@@ -3,11 +3,11 @@ import MatchTile from '../components/MatchTile'
 
 class MatchesContainer extends Component {
   constructor(props){
-    super(props)
+    super(props);
     this.state = {
       matches: []
     }
-    this.unmatchKyle = this.unmatchKyle.bind(this)
+    this.unmatchKyle = this.unmatchKyle.bind(this);
   }
 
   componentDidMount(){
@@ -38,14 +38,14 @@ class MatchesContainer extends Component {
       let unmatchKyle = () => {
         this.unmatchKyle(match.match_id)
       }
-      
+
       return(
         <MatchTile
           key={match.match_id}
           id={match.match_id}
           kyleId={match.kyle_id}
-          name={match.name}
-          image={match.image}
+          kyleName={match.kyle_name}
+          kyleImage={match.kyle_image}
           unmatchKyle={unmatchKyle}
         />
       )
