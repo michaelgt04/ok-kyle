@@ -8,15 +8,12 @@
 @import "font-awesome";
 @import "style";
 @import url('https://fonts.googleapis.com/css?family=Montserrat:700');
+@import url('https://fonts.googleapis.com/css?family=Raleway:700');
 
 body {
   background-color: #F1F1EF;
 }
 
-.header li {
-  display: inline;
-  margin-right: 7rem;
-}
 
 .flash {
   background: rgba(330, 130, 75, .85);
@@ -24,12 +21,14 @@ body {
   text-align: center;
   width: 100%;
   font-family: 'Montserrat', serif;
+  height: 4.25vh;
+}
+
+.placeholder {
+  height: 4.25vh
 }
 
 .picture {
-
-}
-
-.nav {
-
+  object-fit: cover;
+  height: 80vh;
 }
