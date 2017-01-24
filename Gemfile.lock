@@ -44,6 +44,7 @@ GEM
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
+    bcrypt-ruby (3.0.1)
     builder (3.2.2)
     capybara (2.10.0)
       addressable
@@ -223,6 +224,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt-ruby (~> 3.0.0)
   capybara
   dotenv-rails
   factory_girl_rails
