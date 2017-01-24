@@ -19,9 +19,9 @@ RSpec.describe SessionsController, type: :controller do
       session[:user_id].should_not be_nil
     end
 
-    it "should redirect the user to the root url" do
+    it "should redirect the user to the ok-kyle page" do
       post :create, provider: :facebook
-      response.should redirect_to root_url
+      response.should redirect_to '/ok-kyle'
     end
   end
 
