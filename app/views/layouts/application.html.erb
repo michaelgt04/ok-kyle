@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <title>OK-Kyle</title>
+    <%= favicon_link_tag 'hat.png' %>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
@@ -12,43 +13,30 @@
   </head>
 
   <body>
-    <% unless !current_user %>
-    <% if current_user.admin? %>
-      <header>
-        <ul class="header">
+
+
+    <% if current_user %>
+      <div class="top-bar">
+        <ul class="dropdown menu" data-dropdown-menu>
           <li>
             <img src=<%=current_user.image %>/>
           </li>
-          <li>
+          <li class="menu-text">
             <%=current_user.name %>
           </li>
-          <li class="right">
-            <%=link_to "Sign Out", signout_path %>
-          </li>
-        </ul>
-      </header>
-      <% else %>
-        <header>
-          <ul class="header">
-            <li>
-              <img src=<%=current_user.image %>/>
-            </li>
-            <li>
-              <%=current_user.name %>
-            </li>
+          <% unless current_user.admin? %>
             <li class="right">
               <%=link_to "Profile", users_path %>
             </li>
             <li class="right">
               <%=link_to "Find my Kyle", ok_kyle_path %>
             </li>
-            <li class="right">
-              <%=link_to "Sign Out", signout_path %>
-            </li>
-          </ul>
-        </header>
-      <% end %>
-
+          <% end %>
+          <li class="right">
+            <%=link_to "Sign Out", signout_path %>
+          </li>
+        </ul>
+      </div>
     <% end %>
     <%= flash[:notice] %>
 
