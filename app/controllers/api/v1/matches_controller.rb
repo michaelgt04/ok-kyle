@@ -24,6 +24,11 @@ class Api::V1::MatchesController < ApplicationController
 
   private
 
+  def superlike
+    superlike = true
+    render json: superlike
+  end
+
   def determine_json
     if current_user.admin?
       user_json = get_users(@matches)

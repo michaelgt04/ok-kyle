@@ -9,9 +9,11 @@ class PictureContainer extends Component {
       pictures: [],
       alert: ""
     }
-    this.swipeLeft = this.swipeLeft.bind(this)
-    this.swipeRight = this.swipeRight.bind(this)
+    this.swipeLeft = this.swipeLeft.bind(this);
+    this.swipeRight = this.swipeRight.bind(this);
+    this.superLike = this.superLike.bind(this);
   }
+
 
   swipeLeft(){
     let nextPicture;
@@ -43,6 +45,18 @@ class PictureContainer extends Component {
         }
         this.setState({ alert: `You've been matched with ${name}, the Kyle of your dreams.`, currentPicture: nextPicture })
       })
+  }
+
+  superLike(){
+    let superlike = true;
+    fetch('/api/v1/matches',
+    { method: "POST",
+    body: JSON.stringify(superlike),
+    credentials: 'include' })
+    .then(function(response) {
+        let superlike = response.json()
+        return superlike
+    })
   }
 
   componentDidMount(){
@@ -79,9 +93,10 @@ class PictureContainer extends Component {
         </div>
         <div className= "row">
           <div className="full-screen columns small-1 medium-2 large-3" onClick={this.swipeLeft} />
-          <PictureTile url={kyle_url} />
+          <PictureTile url={kyle_url}/>
           <div className="full-screen columns small-1 medium-2 large-3" onClick={this.swipeRight}/>
         </div>
+        <button onClick={this.superLike}>Super-Like this Kyle</button>
       </div>
     )
   }
