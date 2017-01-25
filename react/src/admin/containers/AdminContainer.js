@@ -23,17 +23,27 @@ class AdminContainer extends Component {
   }
 
   unmatchUser(id){
-    fetch(`/api/v1/matches/${id}`,
-    { method: "DELETE",
-    credentials: 'include'})
-    .then(function(response) {
-        let newMatches = response.json()
-        return newMatches
-      }).then((response) => {
-        this.setState({
-        matches: response,
-      })})
+    let matches = this.state.matches
+    let selectedMatch = matches.filter(function(match) {
+      return match.match_id == id
+    });
+    let user = selectedMatch[0].user_name
+    let confirmed = confirm("Are you sure you can afford to unmatch " + user + "?");
+
+    if (confirmed) {
+      fetch(`/api/v1/matches/${id}`,
+      { method: "DELETE",
+      credentials: 'include'})
+      .then(function(response) {
+          let newMatches = response.json()
+          return newMatches
+        }).then((response) => {
+          this.setState({
+          matches: response,
+        })})
+      }
     }
+
 
   render(){
     let adminMatches = this.state.matches.map(match =>{
