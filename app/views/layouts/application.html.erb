@@ -16,27 +16,27 @@
 
 
     <% if current_user %>
-      <div class="top-bar">
-        <ul class="dropdown menu" data-dropdown-menu>
+      <header>
+        <ul>
           <li>
             <img src=<%=current_user.image %>/>
           </li>
-          <li class="menu-text">
+          <li>
             <%=current_user.name %>
           </li>
           <% unless current_user.admin? %>
-            <li class="right">
+            <li>
               <%=link_to "Profile", users_path %>
             </li>
-            <li class="right">
+            <li>
               <%=link_to "Find my Kyle", ok_kyle_path %>
             </li>
           <% end %>
-          <li class="right">
+          <li>
             <%=link_to "Sign Out", signout_path %>
           </li>
         </ul>
-      </div>
+      </header>
     <% end %>
     <%= flash[:notice] %>
 
