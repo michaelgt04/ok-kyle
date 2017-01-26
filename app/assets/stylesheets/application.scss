@@ -1,17 +1,21 @@
 /*
  *= require_tree .
  *= require_self
- *= require foundation_and_overrides
  */
 
-@import "font-awesome-sprockets";
-@import "font-awesome";
-@import "style";
 @import url('https://fonts.googleapis.com/css?family=Montserrat:700');
 @import url('https://fonts.googleapis.com/css?family=Raleway:700');
 
+@mixin centerer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 body {
   background-color: #F1F1EF;
+  font-family: Raleway;
 }
 
 
@@ -30,5 +34,37 @@ body {
 
 .picture {
   object-fit: cover;
-  height: 80vh;
+  height: 75vh;
+  width: 50%;
+  margin: auto;
+  display: inline-block;
+
+  @media (max-width: 400px){
+    width: 80%;
+  }
+}
+
+.clickable {
+  display: inline-block;
+  width: 25%;
+  height: 75vh;
+
+  @media (max-width: 400px){
+    width: 10%;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+header li {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+
+  display: inline;
+  list-style-type: none;
+  font-family: Raleway;
+  padding-right: 2%;
 }
