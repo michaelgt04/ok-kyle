@@ -73,14 +73,14 @@ class PictureContainer extends Component {
     }
 
     return(
-      <div className="row full-screen">
-        <div className= "row">
-          <h5 className={notice}>{this.state.alert}</h5>
+      <div>
+        <div>
+          <h3 className={notice}>{this.state.alert}</h3>
         </div>
-        <div className= "row">
-          <div className="full-screen columns small-1 medium-2 large-3" onClick={this.swipeLeft} />
+        <div>
+          <div className="clickable" onClick={this.swipeLeft} />
           <PictureTile url={kyle_url} />
-          <div className="full-screen columns small-1 medium-2 large-3" onClick={this.swipeRight}/>
+          <div className="clickable" onClick={this.swipeRight}/>
         </div>
       </div>
     )
