@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import PictureTile from '../components/PictureTile'
+import PictureTile from '../components/PictureTile';
+import SwipeTile from '../components/SwipeTile';
 
 class PictureContainer extends Component {
   constructor(props){
@@ -78,9 +79,9 @@ class PictureContainer extends Component {
           <h3 className={notice}>{this.state.alert}</h3>
         </div>
         <div>
-          <div className="clickable" onClick={this.swipeLeft} />
+          <SwipeTile type="left" handleSwipe={this.swipeLeft} />
           <PictureTile url={kyle_url} />
-          <div className="clickable" onClick={this.swipeRight}/>
+          <SwipeTile type="right" handleSwipe={this.swipeRight}/>
         </div>
       </div>
     )
