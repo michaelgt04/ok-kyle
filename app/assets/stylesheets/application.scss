@@ -3,6 +3,8 @@
  *= require_self
  */
 
+@import "font-awesome-sprockets";
+@import "font-awesome";
 @import url('https://fonts.googleapis.com/css?family=Montserrat:700');
 @import url('https://fonts.googleapis.com/css?family=Raleway:700');
 
@@ -15,12 +17,12 @@
 
 body {
   background-color: #F1F1EF;
-  font-family: Raleway;
+  font-family: 'Raleway';
 }
 
 
 .flash {
-  background: rgba(330, 130, 75, .85);
+  background: rgba(236, 50, 49, .85);
   color: #F1F1EF;
   text-align: center;
   width: 100%;
@@ -35,22 +37,27 @@ body {
 .picture {
   object-fit: cover;
   height: 75vh;
-  width: 50%;
+  width: 55%;
+  padding: 12px;
   margin: auto;
+  background-color: white;
   display: inline-block;
+  border-radius: 1%;
+  box-shadow: 2px 2px 2px #9C9B98;
 
-  @media (max-width: 400px){
-    width: 80%;
+  @media (max-width: 450px){
+    width: 75%;
   }
 }
 
 .clickable {
   display: inline-block;
-  width: 25%;
+  width: 20%;
   height: 75vh;
+  position: relative;
 
-  @media (max-width: 400px){
-    width: 10%;
+  @media (max-width: 450px){
+    width: 8%;
   }
 }
 
@@ -67,4 +74,14 @@ header li {
   list-style-type: none;
   font-family: Raleway;
   padding-right: 2%;
+}
+
+.swipe-icon {
+  @include centerer;
+  font-size: 5em;
+  color: #EC3231;
+
+  @media (max-width: 450px){
+    font-size: 2em;
+  }
 }
