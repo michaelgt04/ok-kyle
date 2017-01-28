@@ -3,9 +3,9 @@ import React from 'react';
 const SwipeTile = props => {
   let icon;
   if (props.type === "left"){
-    icon = "fa fa-bomb fa-2x vertical-center"
+    icon = "fa fa-bomb swipe-icon"
   } else {
-    icon = "fa fa-thermometer-full fa-2x vertical-center"
+    icon = "fa fa-thermometer-full swipe-icon"
   }
 
   return(
