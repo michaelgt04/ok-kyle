@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PictureTile from '../components/PictureTile';
 import SwipeTile from '../components/SwipeTile';
+import SuperLike from '../components/SuperLike';
 
 class PictureContainer extends Component {
   constructor(props){
@@ -11,8 +12,8 @@ class PictureContainer extends Component {
       alert: ""
     }
     this.swipeLeft = this.swipeLeft.bind(this);
-    this.swipeRight = this.swipeRight.bind(this);
-    this.superLike = this.superLike.bind(this);
+    this.createMatch = this.createMatch.bind(this);
+    // this.superLike = this.superLike.bind(this);
   }
 
 
@@ -26,9 +27,9 @@ class PictureContainer extends Component {
     this.setState({ currentPicture: nextPicture, alert: ""})
   }
 
-  swipeRight(){
+  createMatch(type){
     let kyleId = this.state.pictures[this.state.currentPicture].id
-    let fetchBody = { id: kyleId }
+    let fetchBody = { id: kyleId, type: type }
     fetch('/api/v1/matches',
       { method: "POST",
       body: JSON.stringify(fetchBody),
@@ -37,6 +38,7 @@ class PictureContainer extends Component {
         let kyle = response.json()
         return kyle
       }).then((response) => {
+        debugger;
         let name = response.name
         let nextPicture;
         if (this.state.currentPicture < this.state.pictures.length - 1){
@@ -48,17 +50,17 @@ class PictureContainer extends Component {
       })
   }
 
-  superLike(){
-    let superlike = true;
-    fetch('/api/v1/matches',
-    { method: "POST",
-    body: JSON.stringify(superlike),
-    credentials: 'include' })
-    .then(function(response) {
-        let superlike = response.json()
-        return superlike
-    })
-  }
+  // superLike(){
+  //   let superlike = true;
+  //   fetch('/api/v1/matches',
+  //   { method: "POST",
+  //   body: JSON.stringify(superlike),
+  //   credentials: 'include' })
+  //   .then(function(response) {
+  //       let superlike = response.json()
+  //       return superlike
+  //   })
+  // }
 
   componentDidMount(){
     $.ajax({
@@ -87,21 +89,28 @@ class PictureContainer extends Component {
       notice = "placeholder"
     }
 
+    let swipeRight;
+    let superLike;
+    if (this.state.pictures[this.state.currentPicture]) {
+    swipeRight = () => { this.createMatch("swipe") };
+    superLike = () => { this.createMatch("superLike") };
+  }
+
     return(
       <div>
         <div>
           <h3 className={notice}>{this.state.alert}</h3>
         </div>
-        <div className= "row">
-          <div className="full-screen columns small-1 medium-2 large-3" onClick={this.swipeLeft} />
-          <PictureTile url={kyle_url}/>
-          <div className="full-screen columns small-1 medium-2 large-3" onClick={this.swipeRight}/>
         <div>
           <SwipeTile type="left" handleSwipe={this.swipeLeft} />
           <PictureTile url={kyle_url} />
-          <SwipeTile type="right" handleSwipe={this.swipeRight}/>
+          <SwipeTile type="right" handleSwipe={swipeRight}/>
         </div>
-        <button onClick={this.superLike}>Super-Like this Kyle</button>
+        <div>
+          <SuperLike
+            handleSwipe={superLike}
+          />
+        </div>
       </div>
     )
   }

@@ -19,7 +19,12 @@ class Api::V1::MatchesController < ApplicationController
   def create
     data = JSON.parse(request.body.read)
     kyle = Kyle.find(data["id"])
-    Match.create(user: current_user, kyle: kyle)
+    type = data["type"]
+    if type == "superLike"
+      Match.create(user: current_user, kyle: kyle, superlike: true)
+    else
+      Match.create(user: current_user, kyle: kyle)
+    end
     render json: kyle
   end
 
