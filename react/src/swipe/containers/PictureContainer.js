@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import PictureTile from '../components/PictureTile'
+import PictureTile from '../components/PictureTile';
+import SwipeTile from '../components/SwipeTile';
 
 class PictureContainer extends Component {
   constructor(props){
@@ -73,14 +74,14 @@ class PictureContainer extends Component {
     }
 
     return(
-      <div className="row full-screen">
-        <div className= "row">
-          <h5 className={notice}>{this.state.alert}</h5>
+      <div>
+        <div>
+          <h3 className={notice}>{this.state.alert}</h3>
         </div>
-        <div className= "row">
-          <div className="full-screen columns small-1 medium-2 large-3" onClick={this.swipeLeft} />
+        <div>
+          <SwipeTile type="left" handleSwipe={this.swipeLeft} />
           <PictureTile url={kyle_url} />
-          <div className="full-screen columns small-1 medium-2 large-3" onClick={this.swipeRight}/>
+          <SwipeTile type="right" handleSwipe={this.swipeRight}/>
         </div>
       </div>
     )
