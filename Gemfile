@@ -6,12 +6,12 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'listen'
-gem 'foundation-rails'
 gem 'dotenv-rails'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'font-awesome-sass'
 gem 'bcrypt-ruby', '~> 3.0.0', require: "bcrypt"
+
 group :development, :test do
   gem 'capybara'
   gem 'factory_girl_rails'
