@@ -2,10 +2,10 @@ import React from 'react';
 
 const MatchTile = props => {
   return(
-    <div>
-      <img src={props.kyleImage}/>
+    <div className="match-div">
+      <img className="match-picture" src={props.kyleImage}/>
       <h3>{props.kyleName}</h3>
-      <button onClick={props.unmatchKyle}>Unmatch this Kyle</button>
+      <button className="unmatch-button" onClick={props.unmatchKyle}>Unmatch this Kyle</button>
     </div>
   )
 }
