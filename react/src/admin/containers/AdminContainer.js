@@ -27,7 +27,7 @@ class AdminContainer extends Component {
     { method: "DELETE",
     credentials: 'include'})
     .then(function(response) {
-        let newMatches = response.json()
+      let newMatches = response.json()
         return newMatches
       }).then((response) => {
         this.setState({
