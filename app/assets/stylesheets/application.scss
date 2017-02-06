@@ -138,8 +138,18 @@ header li {
 }
 
 .facebook-button {
+  @include centerer;
   img {
-    width: 50%;
-    margin: 0
+    width: 100%;
+  }
+}
+
+.kyle-logo {
+  width: 100%;
+
+  img {
+    position: relative;
+    width: 25%;
+    text-align: center;
   }
 }
