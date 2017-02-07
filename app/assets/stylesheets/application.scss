@@ -131,10 +131,20 @@ header li {
 
 .login-box {
   @include centerer;
-  height: 50%;
-  width: 50%;
-  background-color: #F1F1EF;
+  height: 30%;
+  width: 45%;
   border-radius: 1%;
+  text-align: center;
+
+  a {
+    position: relative;
+    margin-bottom: 25%;
+  }
+
+  @media (max-width: 450px){
+    width: 80%;
+    height: 40%;
+  }
 }
 
 .facebook-button {
@@ -148,8 +158,12 @@ header li {
   width: 100%;
 
   img {
-    position: relative;
-    width: 25%;
-    text-align: center;
+    width: 40%;
+    padding-left: 30%;
+
+    @media (max-width: 450px){
+      width: 100%;
+      padding-left: 0;
+    }
   }
 }
