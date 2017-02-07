@@ -58,6 +58,7 @@ class AdminContainer extends Component {
           userId={match.user_id}
           userName={match.user_name}
           userImage={match.user_image}
+          superlike={match.superlike}
           unmatchUser={unmatchUser}
         />
       )
