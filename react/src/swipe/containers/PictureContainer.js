@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PictureTile from '../components/PictureTile';
 import SwipeTile from '../components/SwipeTile';
+import SuperLike from '../components/SuperLike';
 
 class PictureContainer extends Component {
   constructor(props){
@@ -10,9 +11,10 @@ class PictureContainer extends Component {
       pictures: [],
       alert: ""
     }
-    this.swipeLeft = this.swipeLeft.bind(this)
-    this.swipeRight = this.swipeRight.bind(this)
+    this.swipeLeft = this.swipeLeft.bind(this);
+    this.createMatch = this.createMatch.bind(this);
   }
+
 
   swipeLeft(){
     let nextPicture;
@@ -24,9 +26,9 @@ class PictureContainer extends Component {
     this.setState({ currentPicture: nextPicture, alert: ""})
   }
 
-  swipeRight(){
+  createMatch(type){
     let kyleId = this.state.pictures[this.state.currentPicture].id
-    let fetchBody = { id: kyleId }
+    let fetchBody = { id: kyleId, type: type }
     fetch('/api/v1/matches',
       { method: "POST",
       body: JSON.stringify(fetchBody),
@@ -42,7 +44,13 @@ class PictureContainer extends Component {
         } else {
           nextPicture = 0
         }
-        this.setState({ alert: `You've been matched with ${name}, the Kyle of your dreams.`, currentPicture: nextPicture })
+        let alert;
+        if (type === "superLike") {
+          alert = `You have super-liked ${name}`
+        } else {
+          alert = `You've been matched with ${name}, the Kyle of your dreams.`
+        }
+        this.setState({ alert: alert, currentPicture: nextPicture })
       })
   }
 
@@ -73,6 +81,13 @@ class PictureContainer extends Component {
       notice = "placeholder"
     }
 
+    let swipeRight;
+    let superLike;
+    if (this.state.pictures[this.state.currentPicture]) {
+    swipeRight = () => { this.createMatch("swipe") };
+    superLike = () => { this.createMatch("superLike") };
+  }
+
     return(
       <div>
         <div>
@@ -81,7 +96,12 @@ class PictureContainer extends Component {
         <div>
           <SwipeTile type="left" handleSwipe={this.swipeLeft} />
           <PictureTile url={kyle_url} />
-          <SwipeTile type="right" handleSwipe={this.swipeRight}/>
+          <SwipeTile type="right" handleSwipe={swipeRight}/>
+        </div>
+        <div>
+          <SuperLike
+            handleSwipe={superLike}
+          />
         </div>
       </div>
     )
