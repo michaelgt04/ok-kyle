@@ -46,6 +46,7 @@ class MatchesContainer extends Component {
           kyleId={match.kyle_id}
           kyleName={match.kyle_name}
           kyleImage={match.kyle_image}
+          superlike={match.superlike}
           unmatchKyle={unmatchKyle}
         />
       )
