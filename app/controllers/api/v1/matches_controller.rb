@@ -30,21 +30,6 @@ class Api::V1::MatchesController < ApplicationController
 
   private
 
-  def superlike
-    superlike = true
-    render json: superlike
-  end
-
-  def determine_json
-    if current_user.admin?
-      user_json = get_users(@matches)
-      render json: user_json
-    else
-      kyle_json = get_kyles(@matches)
-      render json: kyle_json
-    end
-  end
-
   def user_unmatch
     @match.destroy
     matches = Match.where(user_id: current_user.id)

@@ -13,7 +13,6 @@ class PictureContainer extends Component {
     }
     this.swipeLeft = this.swipeLeft.bind(this);
     this.createMatch = this.createMatch.bind(this);
-    // this.superLike = this.superLike.bind(this);
   }
 
 
@@ -38,7 +37,6 @@ class PictureContainer extends Component {
         let kyle = response.json()
         return kyle
       }).then((response) => {
-        debugger;
         let name = response.name
         let nextPicture;
         if (this.state.currentPicture < this.state.pictures.length - 1){
@@ -46,21 +44,15 @@ class PictureContainer extends Component {
         } else {
           nextPicture = 0
         }
-        this.setState({ alert: `You've been matched with ${name}, the Kyle of your dreams.`, currentPicture: nextPicture })
+        let alert;
+        if (type === "superLike") {
+          alert = `You have super-liked ${name}`
+        } else {
+          alert = `You've been matched with ${name}, the Kyle of your dreams.`
+        }
+        this.setState({ alert: alert, currentPicture: nextPicture })
       })
   }
-
-  // superLike(){
-  //   let superlike = true;
-  //   fetch('/api/v1/matches',
-  //   { method: "POST",
-  //   body: JSON.stringify(superlike),
-  //   credentials: 'include' })
-  //   .then(function(response) {
-  //       let superlike = response.json()
-  //       return superlike
-  //   })
-  // }
 
   componentDidMount(){
     $.ajax({
