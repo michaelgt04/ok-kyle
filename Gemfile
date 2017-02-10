@@ -11,6 +11,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'font-awesome-sass'
 gem 'bcrypt-ruby', '~> 3.0.0', require: "bcrypt"
+gem 'haml'
 
 group :development, :test do
   gem 'capybara'
