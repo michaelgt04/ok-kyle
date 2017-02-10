@@ -26,6 +26,14 @@ $kyle-red: #EC3231;
   box-shadow: 0px 0px 8px #9C9B98;
 }
 
+@mixin button {
+  border: none;
+  background-color: $kyle-red;
+  padding: 1%;
+  font-family: Montserrat;
+  color: #F1F1EF;
+}
+
 body {
   background-color: #F1F1EF;
   font-family: 'Raleway';
@@ -48,7 +56,7 @@ body {
 
 .swipe-picture {
   @include picture;
-  height: 75vh;
+  height: 70vh;
   width: 55%;
   margin: auto;
 
@@ -60,7 +68,7 @@ body {
 .clickable {
   display: inline-block;
   width: 20%;
-  height: 75vh;
+  height: 70vh;
   position: relative;
 
   @media (max-width: 450px){
@@ -105,11 +113,7 @@ header li {
 }
 
 .unmatch-button {
-  border: none;
-  background-color: $kyle-red;
-  padding: 1%;
-  font-family: Montserrat;
-  color: #F1F1EF;
+  @include button;
 }
 
 .match-div {
@@ -158,12 +162,28 @@ header li {
   width: 100%;
 
   img {
-    width: 40%;
-    padding-left: 30%;
+    width: 100%;
+    padding-left: 0;
 
-    @media (max-width: 450px){
-      width: 100%;
-      padding-left: 0;
+    @media (min-width: 450px){
+      width: 50%;
+      padding-left: 25%;
+    }
+
+    @media (min-width: 800px){
+      margin-top: 3%;
+      width: 40%;
+      padding-left: 30%;
     }
   }
+}
+
+.kyle-link {
+  // padding-top: 40%;
+}
+
+.superlike-button {
+  @include button;
+  margin: 1% auto;
+  display: block;
 }
