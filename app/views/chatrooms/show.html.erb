@@ -1,0 +1,14 @@
+<div>
+  <% if @chatroom.messages.any? %>
+    <div id="messages">
+      <% @chatroom.messages.each do |message| %>
+        <p><%= message.user.name %>: <%= message.content%></p>
+      <% end %>
+    </div>
+  <%else%>
+    <div>
+    </div>
+  <%end%>
+</div>
+
+<%= render partial: 'messages/message_form', locals: {message: @message, chatroom: @chatroom}%>
