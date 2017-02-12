@@ -20,4 +20,8 @@ Rails.application.routes.draw do
       resources :admins, only: [:index]
     end
   end
+
+  mount ActionCable.server => '/cable'
+  resources :chatrooms, param: :id
+  resources :messages
 end
