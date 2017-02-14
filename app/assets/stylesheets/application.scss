@@ -80,16 +80,61 @@ a {
   text-decoration: none;
 }
 
-header li {
+.dropdown {
+  margin: 50px 20px;
   position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+  display: inline-block;
+  float: right;
 
-  display: inline;
-  list-style-type: none;
-  font-family: Raleway;
-  padding-right: 2%;
 }
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  min-width: 200px;
+
+  a {
+    display: block;
+  }
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+// header ul{
+//   list-style: none;
+//   position: relative;
+//
+//   a {
+//     display: block;
+//   }
+//
+//   ul {
+//     display:none;
+//     position: absolute;
+//
+//     li:hover > ul {
+//       display:block;
+//     }
+//   }
+// }
+
+// header li {
+//   position: relative;
+//   top: 50%;
+//   transform: translateY(-50%);
+//
+//   display: inline;
+//   list-style-type: none;
+//   font-family: Raleway;
+//   padding-right: 2%;
+//
+//   img {
+//     float: right;
+//     margin: 20px 10px;
+//   }
+// }
 
 .swipe-icon {
   @include centerer;
@@ -178,6 +223,13 @@ header li {
   }
 }
 
+.header-logo {
+  max-width: 300px;
+  display: inline;
+  position: relative;
+  float: left;
+}
+
 .kyle-link {
   // padding-top: 40%;
 }
@@ -186,4 +238,8 @@ header li {
   @include button;
   margin: 1% auto;
   display: block;
+}
+
+.clear{
+  clear: both;
 }
