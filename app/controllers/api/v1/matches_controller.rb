@@ -25,6 +25,7 @@ class Api::V1::MatchesController < ApplicationController
     else
       Match.create(user: current_user, kyle: kyle)
     end
+    create_match_chatroom
     render json: kyle
   end
 
@@ -62,5 +63,11 @@ class Api::V1::MatchesController < ApplicationController
       user_matches << match_object
     end
     return user_matches.uniq { |i| i[:user_id]}
+  end
+
+  def create_match_chatroom
+    unless Chatroom.find_by(user: current_user)
+      Chatroom.create(user: current_user)
+    end
   end
 end
