@@ -17,26 +17,23 @@
 
     <% if current_user %>
       <header>
-        <ul>
-          <li>
-            <img src=<%=current_user.image %>/>
-          </li>
-          <li>
-            <%=current_user.name %>
-          </li>
-          <% unless current_user.admin? %>
-            <li>
-              <%=link_to "Profile", users_path %>
-            </li>
-            <li>
-              <%=link_to "Find my Kyle", ok_kyle_path %>
-            </li>
-          <% end %>
-          <li>
+        <img class="header-logo" src="https://res.cloudinary.com/duor0bzmo/image/upload/v1486937306/ok_kyle_logo_red_qqautl.png"/>
+        <div class="dropdown">
+          <%=link_to image_tag( current_user.image), users_path %>
+
+          <div class="dropdown-content">
+
             <%=link_to "Sign Out", signout_path %>
-          </li>
-        </ul>
+
+            <% unless current_user.admin? %>
+
+              <%=link_to "Find my Kyle", ok_kyle_path %>
+
+            <% end %>
+          </div>
+        </div>
       </header>
+      <div class="clear"></div>
     <% end %>
     <%= flash[:notice] %>
 
