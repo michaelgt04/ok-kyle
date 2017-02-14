@@ -2,7 +2,11 @@
   <% if @chatroom.messages.any? %>
     <div id="messages">
       <% @chatroom.messages.each do |message| %>
-        <p><%= message.user.name %>: <%= message.content%></p>
+        <% if message.admin %>
+          <p><%= message.admin.name %>: <%= message.content%></p>
+        <% else %>
+          <p><%= message.user.name %>: <%= message.content%></p>
+        <% end %>
       <% end %>
     </div>
   <%else%>
