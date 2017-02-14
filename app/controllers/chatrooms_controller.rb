@@ -1,8 +1,12 @@
 class ChatroomsController < ApplicationController
 
   def index
-    @chatroom = Chatroom.find_by(user: current_user)
-    @message = Message.new
+    if current_user.admin?
+      @chatrooms = Chatroom.all
+    else
+      @chatroom = Chatroom.find_by(user: current_user)
+      @message = Message.new
+    end
   end
 
   def show
