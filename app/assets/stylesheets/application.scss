@@ -88,15 +88,42 @@ a {
   text-decoration: none;
 }
 
-header li {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+a:visited {
+  color: inherit;
+}
 
-  display: inline;
-  list-style-type: none;
-  font-family: Raleway;
-  padding-right: 2%;
+.dropdown {
+  margin: 4% 3%;
+  position: relative;
+  display: inline-block;
+  float: right;
+
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  min-width: 125px;
+  background-color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+
+  a {
+    display: block;
+    text-align: right;
+    padding: 7px 5px;
+    color: $kyle-red;
+  }
+
+  a:hover {
+    background-color: $kyle-red;
+    color: white;
+  }
+}
+
+.dropdown:hover .dropdown-content {
+  display: inline-block;
+  right: -1%;
 }
 
 .swipe-icon {
@@ -186,6 +213,13 @@ header li {
   }
 }
 
+.header-logo {
+  max-width: 300px;
+  display: inline;
+  position: relative;
+  float: left;
+}
+
 .kyle-link {
   // padding-top: 40%;
 }
@@ -195,6 +229,9 @@ header li {
   margin: 1% auto;
   display: block;
 }
+
+.clear{
+  clear: both;
 
 .chatbox {
   height: 400px;
