@@ -80,8 +80,12 @@ a {
   text-decoration: none;
 }
 
+a:visited {
+  color: inherit;
+}
+
 .dropdown {
-  margin: 50px 20px;
+  margin: 4% 3%;
   position: relative;
   display: inline-block;
   float: right;
@@ -92,49 +96,27 @@ a {
   display: none;
   position: absolute;
   z-index: 1;
-  min-width: 200px;
+  min-width: 125px;
+  background-color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 
   a {
     display: block;
+    text-align: right;
+    padding: 7px 5px;
+    color: $kyle-red;
+  }
+
+  a:hover {
+    background-color: $kyle-red;
+    color: white;
   }
 }
 
 .dropdown:hover .dropdown-content {
-  display: block;
+  display: inline-block;
+  right: -1%;
 }
-// header ul{
-//   list-style: none;
-//   position: relative;
-//
-//   a {
-//     display: block;
-//   }
-//
-//   ul {
-//     display:none;
-//     position: absolute;
-//
-//     li:hover > ul {
-//       display:block;
-//     }
-//   }
-// }
-
-// header li {
-//   position: relative;
-//   top: 50%;
-//   transform: translateY(-50%);
-//
-//   display: inline;
-//   list-style-type: none;
-//   font-family: Raleway;
-//   padding-right: 2%;
-//
-//   img {
-//     float: right;
-//     margin: 20px 10px;
-//   }
-// }
 
 .swipe-icon {
   @include centerer;
