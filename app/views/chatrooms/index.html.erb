@@ -3,22 +3,10 @@
     <p><%= link_to "#{chatroom.user.name}", chatroom_path(chatroom.id) %></p>
   <% end %>
 <% else %>
-  <div>
-    <% if @chatroom.messages.any? %>
-      <div id="messages">
-        <% @chatroom.messages.each do |message| %>
-          <% if message.admin %>
-            <p><%= message.admin.name %>: <%= message.content%></p>
-          <% else %>
-            <p><%= message.user.name %>: <%= message.content%></p>
-          <% end %>
-        <% end %>
-      </div>
-    <%else%>
-      <div id="messages">
-      </div>
-    <%end%>
-  </div>
-
   <%= render partial: 'messages/message_form', locals: {message: @message, chatroom: @chatroom}%>
+<% end %>
+
+<% if current_user %>
+  <div id="match-chat">
+  </div>
 <% end %>

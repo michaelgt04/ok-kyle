@@ -19,8 +19,9 @@ class MessagesController < ApplicationController
     message.user = current_user
     if message.save
       ActionCable.server.broadcast 'messages',
-        message: message.content,
-        user: message.user.name
+        id: message.id,
+        content: message.content,
+        name: message.user.name
       head :ok
     else
       redirect_to chatrooms_path
@@ -31,8 +32,9 @@ class MessagesController < ApplicationController
     message.admin = current_user
     if message.save
       ActionCable.server.broadcast 'messages',
-        message: message.content,
-        user: message.admin.name
+        id: message.id,
+        content: message.content,
+        name: message.admin.name
       head :ok
     else
       redirect_to chatrooms_path
