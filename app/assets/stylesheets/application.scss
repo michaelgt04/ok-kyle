@@ -35,10 +35,11 @@ $kyle-red: #EC3231;
 }
 
 @mixin message {
-  padding: 1%;
+  padding: .5%;
   margin: 1%;
-  border-radius: 6%;
+  border-radius: 3%;
   box-shadow: 0px 0px 8px #9C9B98;
+  max-width: 200px;
 }
 
 body {
