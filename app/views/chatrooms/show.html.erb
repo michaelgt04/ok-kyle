@@ -1,6 +1,4 @@
-<%= render partial: 'messages/message_form', locals: {message: @message, chatroom: @chatroom}%>
-
 <% if current_user %>
-  <div id="match-chat">
+  <div id="match-chat" data-chatroom=<%= params[:id]%>>
   </div>
 <% end %>
