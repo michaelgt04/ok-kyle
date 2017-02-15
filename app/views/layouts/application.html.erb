@@ -18,29 +18,25 @@
 
     <% if current_user %>
       <header>
-        <ul>
-          <li>
-            <img src=<%=current_user.image %>/>
-          </li>
-          <li>
-            <%=current_user.name %>
-          </li>
-          <% unless current_user.admin? %>
-            <li>
-              <%=link_to "Profile", users_path %>
-            </li>
-            <li>
-              <%=link_to "Find my Kyle", ok_kyle_path %>
-            </li>
-          <% end %>
-          <li>
+
+        <img class="header-logo" src="https://res.cloudinary.com/duor0bzmo/image/upload/v1486937306/ok_kyle_logo_red_qqautl.png"/>
+        <div class="dropdown">
+          <img src= <%=current_user.image %> />
+
+          <div class="dropdown-content">
+
+            <%=link_to "My Matches", users_path %>
+
+            <%=link_to "Find my Kyle", ok_kyle_path unless current_user.admin? %>
+
             <%= link_to "Chat", chatrooms_path %>
-          </li>
-          <li>
+
             <%=link_to "Sign Out", signout_path %>
-          </li>
-        </ul>
+
+          </div>
+        </div>
       </header>
+      <div class="clear"></div>
     <% end %>
     <%= flash[:notice] %>
 
