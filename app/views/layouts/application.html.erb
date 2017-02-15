@@ -26,7 +26,11 @@
 
           <div class="dropdown-content">
 
-            <%=link_to "My Matches", users_path %>
+            <% if current_user.admin? %>
+              <%=link_to "My Matches", admins_path %>
+            <% else %>
+              <%=link_to "My Matches", users_path %>
+            <% end %>
 
             <%=link_to "Find my Kyle", ok_kyle_path unless current_user.admin? %>
 
