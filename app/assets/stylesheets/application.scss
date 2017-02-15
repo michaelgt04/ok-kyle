@@ -89,7 +89,10 @@ a:visited {
   position: relative;
   display: inline-block;
   float: right;
-
+  
+  .prof-pic {
+    max-width: 50px;
+  }
 }
 
 .dropdown-content {
@@ -224,6 +227,7 @@ a:visited {
 
 .clear{
   clear: both;
+}
 
 .chatbox {
   height: 400px;
