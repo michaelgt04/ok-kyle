@@ -34,6 +34,9 @@ class Api::V1::MatchesController < ApplicationController
   def user_unmatch
     @match.destroy
     matches = Match.where(user_id: current_user.id)
+    if matches.empty?
+      delete_chatroom(current_user)
+    end
     user_matches = get_kyles(matches)
     render json: user_matches
   end
@@ -41,8 +44,14 @@ class Api::V1::MatchesController < ApplicationController
   def admin_unmatch
     matches = Match.where(user_id: @user.id)
     matches.destroy_all
+    delete_chatroom(@user)
     kyle_matches = get_users(Match.all)
     render json: kyle_matches
+  end
+
+  def delete_chatroom(user)
+    chatroom = Chatroom.find_by(user: user)
+    chatroom.delete
   end
 
   def get_kyles(match_array)
