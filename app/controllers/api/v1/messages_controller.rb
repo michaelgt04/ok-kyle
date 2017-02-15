@@ -3,15 +3,17 @@ class Api::V1::MessagesController < ApplicationController
 
   def show
     chatroom = Chatroom.find_by(id: params[:id])
-    messages = chatroom.messages
-    response = []
+    messages = chatroom.messages.order(:created_at)
+    message_json = []
     messages.each do |message|
       if message.admin
-        response << {id: message.id, name: message.admin.name, content: message.content}
+        message_json << {id: message.id, name: message.admin.name, content: message.content}
       else
-        response << {id: message.id, name: message.user.name, content: message.content}
+        message_json << {id: message.id, name: message.user.name, content: message.content}
       end
     end
+    response = {name: current_user.name, messages: message_json}
+
     render json: response
   end
 
@@ -35,7 +37,8 @@ class Api::V1::MessagesController < ApplicationController
       ActionCable.server.broadcast 'messages',
         id: "u#{message.id}",
         content: message.content,
-        name: message.user.name
+        name: message.user.name,
+        chatroom: message.chatroom.id
       head :ok
     else
       redirect_to chatrooms_path
@@ -48,7 +51,8 @@ class Api::V1::MessagesController < ApplicationController
       ActionCable.server.broadcast 'messages',
         id: "k#{message.id}",
         content: message.content,
-        name: message.admin.name
+        name: message.admin.name,
+        chatroom: message.chatroom.id
       head :ok
     else
       redirect_to chatrooms_path
