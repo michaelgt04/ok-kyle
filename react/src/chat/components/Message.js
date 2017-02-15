@@ -9,7 +9,9 @@ const Message = props => {
   }
 
   return(
-    <p><span className={sender} id={props.id}>{props.content}</span></p>
+    <div className="message-div">
+      <span className={sender} id={props.id}>{props.content}</span>
+    </div>
   )
 }
 

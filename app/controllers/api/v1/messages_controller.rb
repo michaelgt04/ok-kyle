@@ -3,7 +3,7 @@ class Api::V1::MessagesController < ApplicationController
 
   def show
     chatroom = Chatroom.find_by(id: params[:id])
-    messages = chatroom.messages
+    messages = chatroom.messages.order(:created_at)
     message_json = []
     messages.each do |message|
       if message.admin
