@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
-import Message from '../components/Message'
+import Message from '../components/Message';
+import ChatForm from '../components/ChatForm';
+
 
 class ChatContainer extends Component {
   constructor(props){
     super(props);
     this.state = {
-      messages: []
+      messages: [],
+      formMessage: "",
+      chatroomId: null,
+      value: ""
     }
     this.recieveMessages = this.recieveMessages.bind(this)
+    this.handleMessageChange = this.handleMessageChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   recieveMessages(){
@@ -23,21 +30,38 @@ class ChatContainer extends Component {
   }
 
   componentDidMount(){
+    let chatId = $('#match-chat').data('chatroom')
     $.ajax({
         method: "GET",
-        url: "/api/v1/messages",
+        url: `/api/v1/messages/${chatId}`,
       })
       .done(data => {
         this.setState({
-          messages: data
+          messages: data,
+          chatroomId: chatId
         })
-        if (data == false){
-          let lastMessageId = this.state.messages[this.state.messages.length - 1]
-          let lastMessage = document.getElementById(`${lastMessageId.id}`)
-          lastMessage.scrollIntoView(false)
-        }
+        let lastMessageId = this.state.messages[this.state.messages.length - 1]
+        let lastMessage = document.getElementById(`${lastMessageId.id}`)
+        lastMessage.scrollIntoView(false)
       })
     this.recieveMessages()
+  }
+
+  handleMessageChange(event) {
+    let newMessage = event.target.value;
+    this.setState({ formMessage: newMessage })
+  }
+
+  handleSubmit(event) {
+    event.preventDefault()
+    let fetchBody = {content: this.state.formMessage, chatroom: this.state.chatroomId}
+    fetch('/api/v1/messages',
+    { method: "POST",
+    credentials: "include",
+    body: JSON.stringify(fetchBody)})
+    .then(response => {
+      this.setState({ formMessage: "" })
+    })
   }
 
   render(){
@@ -54,10 +78,15 @@ class ChatContainer extends Component {
 
     return(
       <div>
-        <h1>Chat with Kyle</h1>
+        <h1 className="chat-header">Chat with Kyle</h1>
         <div className="chatbox">
           {messages}
         </div>
+        <ChatForm
+          handleMessageChange={this.handleMessageChange}
+          handleSubmit={this.handleSubmit}
+          value={this.state.formMessage}
+        />
       </div>
     )
   }
