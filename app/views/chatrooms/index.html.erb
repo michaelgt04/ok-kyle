@@ -1,10 +1,18 @@
 <% if current_user.admin? %>
-  <% @chatrooms.each do |chatroom| %>
-    <p><%= link_to "#{chatroom.user.name}", chatroom_path(chatroom.id) %></p>
+  <% unless @chatrooms.nil? %>
+    <% @chatrooms.each do |chatroom| %>
+      <p><%= link_to "#{chatroom.user.name}", chatroom_path(chatroom.id) %></p>
+    <% end %>
   <% end %>
 <% end %>
 
 <% unless current_user.admin? %>
-  <div id="match-chat" data-chatroom=<%= @chatroom.id %>>
-  </div>
+  <% if @chatroom %>
+    <div id="match-chat" data-chatroom=<%= @chatroom.id %>>
+    </div>
+  <% else %>
+    <div>
+      <h1>Match with Kyle to get chatting!</h1>
+    </div>
+  <% end %>
 <% end %>
