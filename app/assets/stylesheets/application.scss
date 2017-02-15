@@ -241,12 +241,16 @@ a:visited {
 }
 
 .chatbox {
+  width: 90%;
+  margin-left: 5%;
   height: 400px;
   overflow-y: scroll;
-  margin-left: 25%;
-  width: 50%;
   background-color: #FAFAFA;
-  // box-shadow: 0px 0px 8px #9C9B98;
+
+  @media(min-width: 450px){
+    margin-left: 25%;
+    width: 50%;
+  }
 }
 
 .chat-header {
@@ -272,19 +276,30 @@ a:visited {
 
 .chat-button{
   @include button;
-  width: 10%;
-  margin-right: 25%;
+  width: 30%;
+  margin-right: 5%;
   padding: 2% 0;
   font-size: 1rem;
+
+  @media(min-width: 450px){
+    width: 10%;
+    margin-right: 25%;
+  }
 }
 
 .chat-input{
-  margin-left: 25%;
-  width: 40%;
+  margin-left: 5%;
+  width: 59%;
   border: none;
   font-size: 1rem;
   padding: 2% 0;
   background-color: #FAFAFA;
+  border: solid .25px #E3E3E3;
+  
+  @media(min-width: 450px){
+    margin-left: 25%;
+    width: 39.5%;
+  }
 }
 
 .chat-input:focus {

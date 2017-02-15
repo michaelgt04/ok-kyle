@@ -21,10 +21,12 @@ class ChatContainer extends Component {
   recieveMessages(){
     App.cable.subscriptions.create('MessagesChannel', {
       received: (data) => {
-        let newMessages = [...this.state.messages, data]
-        this.setState({ messages: newMessages })
-        let chatDiv = document.getElementsByClassName("chatbox")[0]
-        chatDiv.scrollTop = chatDiv.scrollHeight
+        if (data.chatroom === this.state.chatroomId){
+          let newMessages = [...this.state.messages, data]
+          this.setState({ messages: newMessages })
+          let chatDiv = document.getElementsByClassName("chatbox")[0]
+          chatDiv.scrollTop = chatDiv.scrollHeight
+        }
       }
     });
   }
@@ -77,9 +79,16 @@ class ChatContainer extends Component {
       )
     })
 
+    let header;
+    if (this.state.currentUserName === "Kyle Wood"){
+      header = "Match Chat"
+    } else {
+      header = "Chat with Kyle"
+    }
+
     return(
       <div>
-        <h1 className="chat-header">Chat with Kyle</h1>
+        <h1 className="chat-header">{header}</h1>
         <div className="chatbox">
           {messages}
         </div>

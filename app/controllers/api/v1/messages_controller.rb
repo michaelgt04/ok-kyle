@@ -37,7 +37,8 @@ class Api::V1::MessagesController < ApplicationController
       ActionCable.server.broadcast 'messages',
         id: "u#{message.id}",
         content: message.content,
-        name: message.user.name
+        name: message.user.name,
+        chatroom: message.chatroom.id
       head :ok
     else
       redirect_to chatrooms_path
@@ -50,7 +51,8 @@ class Api::V1::MessagesController < ApplicationController
       ActionCable.server.broadcast 'messages',
         id: "k#{message.id}",
         content: message.content,
-        name: message.admin.name
+        name: message.admin.name,
+        chatroom: message.chatroom.id
       head :ok
     else
       redirect_to chatrooms_path
