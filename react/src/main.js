@@ -3,8 +3,9 @@ import 'whatwg-fetch';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './swipe/App';
-import UserProfile from './profile/UserProfile'
-import AdminProfile from './admin/AdminProfile'
+import UserProfile from './profile/UserProfile';
+import AdminProfile from './admin/AdminProfile';
+import ChatInterface from './chat/ChatInterface';
 
 $(function() {
     if (document.getElementById('app')){
@@ -32,3 +33,12 @@ $(function() {
     );
   }
 });
+
+$(function(){
+  if (document.getElementById('match-chat')){
+    ReactDOM.render(
+      <ChatInterface />,
+      document.getElementById('match-chat')
+    )
+  }
+})
