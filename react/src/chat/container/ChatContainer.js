@@ -7,6 +7,7 @@ class ChatContainer extends Component {
   constructor(props){
     super(props);
     this.state = {
+      currentUserName: "",
       messages: [],
       formMessage: "",
       chatroomId: null,
@@ -37,7 +38,8 @@ class ChatContainer extends Component {
       })
       .done(data => {
         this.setState({
-          messages: data,
+          currentUserName: data.name,
+          messages: data.messages,
           chatroomId: chatId
         })
         let lastMessageId = this.state.messages[this.state.messages.length - 1]
@@ -72,6 +74,7 @@ class ChatContainer extends Component {
           id={message.id}
           name={message.name}
           content={message.content}
+          currentUserName={this.state.currentUserName}
         />
       )
     })

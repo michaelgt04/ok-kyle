@@ -4,14 +4,16 @@ class Api::V1::MessagesController < ApplicationController
   def show
     chatroom = Chatroom.find_by(id: params[:id])
     messages = chatroom.messages
-    response = []
+    message_json = []
     messages.each do |message|
       if message.admin
-        response << {id: message.id, name: message.admin.name, content: message.content}
+        message_json << {id: message.id, name: message.admin.name, content: message.content}
       else
-        response << {id: message.id, name: message.user.name, content: message.content}
+        message_json << {id: message.id, name: message.user.name, content: message.content}
       end
     end
+    response = {name: current_user.name, messages: message_json}
+
     render json: response
   end
 
