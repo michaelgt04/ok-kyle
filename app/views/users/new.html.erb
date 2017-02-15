@@ -1,0 +1,15 @@
+<div class="landing-background">
+  <div class="landing-container">
+    <img class="kyle-logo" src="https://res.cloudinary.com/duor0bzmo/image/upload/v1486937306/ok_kyle_logo_red_qqautl.png" />
+
+    <div class="login-box">
+      <%= link_to "auth/facebook" do %>
+
+        <%= image_tag "http://res.cloudinary.com/duor0bzmo/image/upload/v1485637387/login-button-png-18039_s3zz4v.png", class: "facebook-button" %>
+
+      <% end %>
+
+      <%= link_to "Are you Kyle?", new_session_path, class: "kyle-link" %>
+    </div>
+  </div>
+</div>
