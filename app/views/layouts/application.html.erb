@@ -9,6 +9,7 @@
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= action_cable_meta_tag %>
     <%= csrf_meta_tags %>
   </head>
 
@@ -32,6 +33,9 @@
               <%=link_to "Find my Kyle", ok_kyle_path %>
             </li>
           <% end %>
+          <li>
+            <%= link_to "Chat", chatrooms_path %>
+          </li>
           <li>
             <%=link_to "Sign Out", signout_path %>
           </li>
