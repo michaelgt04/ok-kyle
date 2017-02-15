@@ -23,9 +23,8 @@ class ChatContainer extends Component {
       received: (data) => {
         let newMessages = [...this.state.messages, data]
         this.setState({ messages: newMessages })
-        let lastMessageId = this.state.messages[this.state.messages.length - 1]
-        let lastMessage = document.getElementById(`${lastMessageId.id}`)
-        lastMessage.scrollIntoView(false)
+        let chatDiv = document.getElementsByClassName("chatbox")[0]
+        chatDiv.scrollTop = chatDiv.scrollHeight
       }
     });
   }
@@ -42,9 +41,8 @@ class ChatContainer extends Component {
           messages: data.messages,
           chatroomId: chatId
         })
-        let lastMessageId = this.state.messages[this.state.messages.length - 1]
-        let lastMessage = document.getElementById(`${lastMessageId.id}`)
-        lastMessage.scrollIntoView(false)
+        let chatDiv = document.getElementsByClassName("chatbox")[0]
+        chatDiv.scrollTop = chatDiv.scrollHeight
       })
     this.recieveMessages()
   }
