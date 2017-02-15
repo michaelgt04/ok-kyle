@@ -90,6 +90,10 @@ a:visited {
   display: inline-block;
   float: right;
 
+  .prof-pic {
+    max-width: 50px;
+  }
+
 }
 
 .dropdown-content {
