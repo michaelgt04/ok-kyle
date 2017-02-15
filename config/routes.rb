@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       resources :matches, only: [:index, :destroy, :create]
       resources :users, only: [:index]
       resources :admins, only: [:index]
+      resources :messages, only: [:index]
     end
   end
 
