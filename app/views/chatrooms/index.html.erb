@@ -4,7 +4,7 @@
   <% end %>
 <% end %>
 
-<% if current_user %>
+<% unless current_user.admin? %>
   <div id="match-chat" data-chatroom=<%= @chatroom.id %>>
   </div>
 <% end %>
