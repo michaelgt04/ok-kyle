@@ -7,6 +7,7 @@ class ChatContainer extends Component {
   constructor(props){
     super(props);
     this.state = {
+      currentUserName: "",
       messages: [],
       formMessage: "",
       chatroomId: null,
@@ -20,11 +21,12 @@ class ChatContainer extends Component {
   recieveMessages(){
     App.cable.subscriptions.create('MessagesChannel', {
       received: (data) => {
-        let newMessages = [...this.state.messages, data]
-        this.setState({ messages: newMessages })
-        let lastMessageId = this.state.messages[this.state.messages.length - 1]
-        let lastMessage = document.getElementById(`${lastMessageId.id}`)
-        lastMessage.scrollIntoView(false)
+        if (data.chatroom === this.state.chatroomId){
+          let newMessages = [...this.state.messages, data]
+          this.setState({ messages: newMessages })
+          let chatDiv = document.getElementsByClassName("chatbox")[0]
+          chatDiv.scrollTop = chatDiv.scrollHeight
+        }
       }
     });
   }
@@ -37,12 +39,12 @@ class ChatContainer extends Component {
       })
       .done(data => {
         this.setState({
-          messages: data,
+          currentUserName: data.name,
+          messages: data.messages,
           chatroomId: chatId
         })
-        let lastMessageId = this.state.messages[this.state.messages.length - 1]
-        let lastMessage = document.getElementById(`${lastMessageId.id}`)
-        lastMessage.scrollIntoView(false)
+        let chatDiv = document.getElementsByClassName("chatbox")[0]
+        chatDiv.scrollTop = chatDiv.scrollHeight
       })
     this.recieveMessages()
   }
@@ -72,13 +74,21 @@ class ChatContainer extends Component {
           id={message.id}
           name={message.name}
           content={message.content}
+          currentUserName={this.state.currentUserName}
         />
       )
     })
 
+    let header;
+    if (this.state.currentUserName === "Kyle Wood"){
+      header = "Match Chat"
+    } else {
+      header = "Chat with Kyle"
+    }
+
     return(
       <div>
-        <h1 className="chat-header">Chat with Kyle</h1>
+        <h1 className="chat-header">{header}</h1>
         <div className="chatbox">
           {messages}
         </div>

@@ -1,12 +1,12 @@
 import React from 'react';
 
 const ChatForm = props => {
+  let text = "Type message..."
   return(
-    <form>
-      <label>Message: </label>
-      <input type="text" onChange={props.handleMessageChange} value={props.value}/>
+    <form id="chat-input-form">
+      <input className="chat-input" type="text" onChange={props.handleMessageChange} value={props.value} placeholder={text}/>
 
-      <input type="submit" onClick={props.handleSubmit}/>
+      <input className="chat-button" type="submit" onClick={props.handleSubmit}/>
     </form>
   )
 }

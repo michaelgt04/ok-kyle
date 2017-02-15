@@ -10,6 +10,7 @@
 
 $kyle-red: #EC3231;
 $background-white: #F1F1EF;
+$message-grey: #808080;
 
 @mixin centerer {
   position: absolute;
@@ -33,6 +34,16 @@ $background-white: #F1F1EF;
   padding: 1%;
   font-family: Montserrat;
   color: $background-white;
+}
+
+@mixin message {
+  padding: 2.5% 5%;
+  margin: 2%;
+  border-radius: 20px;
+  width: fit-content;
+  max-width: 200px;
+  display: block;
+  font-size: .9rem;
 }
 
 body {
@@ -220,12 +231,73 @@ a:visited {
 }
 
 .chatbox {
+  width: 90%;
+  margin-left: 5%;
   height: 400px;
   overflow-y: scroll;
+  background-color: #FAFAFA;
+
+  @media(min-width: 450px){
+    margin-left: 25%;
+    width: 50%;
+  }
 }
 
 .chat-header {
   text-align: center;
+}
+
+.sender-message {
+  @include message;
+  background-color: $kyle-red;
+  float: right;
+}
+
+.reply-message {
+  @include message;
+  background-color: $message-grey;
+}
+
+.message-div {
+  width: 100%;
+  float: left;
+  clear: left;
+}
+
+.chat-button{
+  @include button;
+  width: 30%;
+  margin-right: 5%;
+  padding: 2% 0;
+  font-size: 1rem;
+
+  @media(min-width: 450px){
+    width: 10%;
+    margin-right: 25%;
+  }
+}
+
+.chat-input{
+  margin-left: 5%;
+  width: 59%;
+  border: none;
+  font-size: 1rem;
+  padding: 2% 0;
+  background-color: #FAFAFA;
+  border: solid .25px #E3E3E3;
+
+  @media(min-width: 450px){
+    margin-left: 25%;
+    width: 39.5%;
+  }
+}
+
+.chat-input:focus {
+  outline: none;
+}
+
+.kyle-log-in-header {
+  color: $kyle-red;
 }
 
 .kyle-log-in {
