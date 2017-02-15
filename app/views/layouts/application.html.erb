@@ -9,6 +9,7 @@
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= action_cable_meta_tag %>
     <%= csrf_meta_tags %>
   </head>
 
@@ -17,6 +18,7 @@
 
     <% if current_user %>
       <header>
+
         <img class="header-logo" src="https://res.cloudinary.com/duor0bzmo/image/upload/v1486937306/ok_kyle_logo_red_qqautl.png"/>
         <div class="dropdown">
           <img src= <%=current_user.image %> />
@@ -26,6 +28,8 @@
             <%=link_to "My Matches", users_path %>
 
             <%=link_to "Find my Kyle", ok_kyle_path unless current_user.admin? %>
+
+            <%= link_to "Chat", chatrooms_path %>
 
             <%=link_to "Sign Out", signout_path %>
 

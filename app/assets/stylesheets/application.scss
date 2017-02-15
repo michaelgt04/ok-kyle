@@ -224,4 +224,12 @@ a:visited {
 
 .clear{
   clear: both;
+
+.chatbox {
+  height: 400px;
+  overflow-y: scroll;
+}
+
+.chat-header {
+  text-align: center;
 }

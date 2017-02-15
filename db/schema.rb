@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170125161013) do
+ActiveRecord::Schema.define(version: 20170212222345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,13 @@ ActiveRecord::Schema.define(version: 20170125161013) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.string   "image"
+  end
+
+  create_table "chatrooms", force: :cascade do |t|
+    t.integer  "match_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["match_id"], name: "index_chatrooms_on_match_id", using: :btree
   end
 
   create_table "kyles", force: :cascade do |t|
@@ -41,6 +48,16 @@ ActiveRecord::Schema.define(version: 20170125161013) do
     t.boolean  "superlike",  default: false
     t.index ["kyle_id"], name: "index_matches_on_kyle_id", using: :btree
     t.index ["user_id"], name: "index_matches_on_user_id", using: :btree
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "chatroom_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "content",     null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id", using: :btree
+    t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
