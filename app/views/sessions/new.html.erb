@@ -1,14 +1,14 @@
-<div class="kyle-log-in">
-  <h1 class="kyle-log-in-header">Welcome Back, Kyle!</h1>
+  <div class="kyle-log-in">
+    <h1 class="kyle-log-in-header">Welcome Back, Kyle!</h1>
 
-  <div class="kyle-log-in-form">
-    <%=form_tag sign_in_path do %>
-      <%=label_tag :email %>
-      <%=text_field_tag :email %><br />
-      <%=label_tag :password %>
-      <%=password_field_tag :password %><br />
-      <%=submit_tag "Log in", class: "kyle-log-in-button"  %>
-      <%=link_to "Not Kyle?", root_path %>
-    <%end%>
+    <div class="kyle-log-in-form">
+      <%=form_tag sign_in_path do %>
+        <%=label_tag :email %>
+        <%=text_field_tag :email %><br />
+        <%=label_tag :password %>
+        <%=password_field_tag :password %><br />
+        <%=submit_tag "Log in", class: "kyle-log-in-button"  %>
+        <%=link_to "Not Kyle?", root_path %>
+      <%end%>
+    </div>
   </div>
-</div>
