@@ -277,6 +277,11 @@ a:visited {
   }
 }
 
+.chat-button:hover {
+  background-color: #FAFAFA;
+  color: $kyle-red;
+}
+
 .chat-input{
   margin-left: 5%;
   width: 59%;
