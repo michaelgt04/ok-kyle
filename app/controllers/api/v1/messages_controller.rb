@@ -3,6 +3,7 @@ class Api::V1::MessagesController < ApplicationController
 
   def show
     chatroom = Chatroom.find_by(id: params[:id])
+    chat_owner = chatroom.user.name
     messages = chatroom.messages.order(:created_at)
     message_json = []
     messages.each do |message|
@@ -12,7 +13,7 @@ class Api::V1::MessagesController < ApplicationController
         message_json << {id: message.id, name: message.user.name, content: message.content}
       end
     end
-    response = {name: current_user.name, messages: message_json}
+    response = {name: current_user.name, messages: message_json, chat_owner: chat_owner}
 
     render json: response
   end
