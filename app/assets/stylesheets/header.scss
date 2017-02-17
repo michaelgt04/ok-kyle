@@ -1,0 +1,58 @@
+@import "_mixins";
+@import "_variables";
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: inherit;
+}
+
+.dropdown {
+  margin: 4% 3%;
+  position: relative;
+  display: inline-block;
+  float: right;
+
+  .prof-pic {
+    max-width: 50px;
+  }
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  min-width: 125px;
+  background-color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+
+  a {
+    display: block;
+    text-align: right;
+    padding: 7px 5px;
+    color: $kyle-red;
+  }
+
+  a:hover {
+    background-color: $kyle-red;
+    color: white;
+  }
+}
+
+.dropdown:hover .dropdown-content {
+  display: inline-block;
+  right: -1%;
+}
+
+.header-logo {
+  max-width: 300px;
+  display: inline;
+  position: relative;
+  float: left;
+}
+
+.clear{
+  clear: both;
+}

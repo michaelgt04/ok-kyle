@@ -1,0 +1,28 @@
+@import "_mixins";
+@import "_variables";
+
+.match-picture {
+  @include picture;
+  height: 55vh;
+  width: 65%;
+  margin: auto;
+
+  @media (max-width: 450px){
+    width: 75%;
+  }
+}
+
+.unmatch-button {
+  @include button;
+}
+
+.match-div {
+  float: left;
+  width: 50%;
+  text-align: center;
+  padding-bottom: 3%;
+
+  @media (max-width: 450px){
+    width: 100%;
+  }
+}

@@ -1,0 +1,53 @@
+@import "_mixins";
+@import "_variables";
+
+.flash {
+  background: rgba(236, 50, 49, .85);
+  color: $background-white;
+  text-align: center;
+  width: 100%;
+  font-family: 'Montserrat', serif;
+  height: 4.25vh;
+}
+
+.placeholder {
+  height: 4.25vh
+}
+
+.swipe-picture {
+  @include picture;
+  height: 70vh;
+  width: 55%;
+  margin: auto;
+
+  @media (max-width: 450px){
+    width: 75%;
+  }
+}
+
+.clickable {
+  display: inline-block;
+  width: 20%;
+  height: 70vh;
+  position: relative;
+
+  @media (max-width: 450px){
+    width: 8%;
+  }
+}
+
+.swipe-icon {
+  @include centerer;
+  font-size: 5em;
+  color: $kyle-red;
+
+  @media (max-width: 450px){
+    font-size: 2em;
+  }
+}
+
+.superlike-button {
+  @include button;
+  margin: 1% auto;
+  display: block;
+}
