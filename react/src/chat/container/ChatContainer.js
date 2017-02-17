@@ -11,7 +11,8 @@ class ChatContainer extends Component {
       messages: [],
       formMessage: "",
       chatroomId: null,
-      value: ""
+      value: "",
+      chatOwner: ""
     }
     this.recieveMessages = this.recieveMessages.bind(this)
     this.handleMessageChange = this.handleMessageChange.bind(this)
@@ -41,7 +42,8 @@ class ChatContainer extends Component {
         this.setState({
           currentUserName: data.name,
           messages: data.messages,
-          chatroomId: chatId
+          chatroomId: chatId,
+          chatOwner: data.chat_owner
         })
         let chatDiv = document.getElementsByClassName("chatbox")[0]
         chatDiv.scrollTop = chatDiv.scrollHeight
@@ -81,7 +83,7 @@ class ChatContainer extends Component {
 
     let header;
     if (this.state.currentUserName === "Kyle Wood"){
-      header = "Match Chat"
+      header = `Chat with ${this.state.chatOwner}`
     } else {
       header = "Chat with Kyle"
     }
