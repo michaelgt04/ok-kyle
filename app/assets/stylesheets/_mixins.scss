@@ -1,0 +1,33 @@
+@mixin centerer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin picture {
+  object-fit: cover;
+  padding: 12px;
+  background-color: white;
+  display: inline-block;
+  border-radius: 1%;
+  box-shadow: 0px 0px 8px #9C9B98;
+}
+
+@mixin button {
+  border: none;
+  background-color: $kyle-red;
+  padding: 1%;
+  font-family: Montserrat;
+  color: $background-white;
+}
+
+@mixin message {
+  padding: 2.5% 5%;
+  margin: 2%;
+  border-radius: 20px;
+  width: fit-content;
+  max-width: 200px;
+  display: block;
+  font-size: .9rem;
+}
