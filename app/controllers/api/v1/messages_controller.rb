@@ -21,10 +21,11 @@ class Api::V1::MessagesController < ApplicationController
   def create
     data = JSON.parse(request.body.read)
     content = data["content"]
+    chatbot = data["chatbot"]
     chatroom = Chatroom.find(data["chatroom"])
     message = Message.new(content: content, chatroom: chatroom)
-    if current_user.admin?
-      send_kyle_message(message)
+    if current_user.admin? || chatbot
+      send_kyle_message(message, chatbot)
     else
       send_user_message(message)
     end
@@ -46,8 +47,12 @@ class Api::V1::MessagesController < ApplicationController
     end
   end
 
-  def send_kyle_message(message)
-    message.admin = current_user
+  def send_kyle_message(message, chatbot)
+    if chatbot
+      message.admin = Admin.first
+    else
+      message.admin = current_user
+    end
     if message.save
       ActionCable.server.broadcast 'messages',
         id: "k#{message.id}",

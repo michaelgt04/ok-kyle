@@ -17,6 +17,7 @@ class ChatContainer extends Component {
     this.recieveMessages = this.recieveMessages.bind(this)
     this.handleMessageChange = this.handleMessageChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.eggplantEmoji = this.eggplantEmoji.bind(this)
   }
 
   recieveMessages(){
@@ -30,6 +31,20 @@ class ChatContainer extends Component {
         }
       }
     });
+  }
+
+  eggplantEmoji(){
+    let randomNumber = Math.random() * 5
+    if (randomNumber >= 4){
+      let fetchBody = { content: "🍆", chatroom: this.state.chatroomId, chatbot: true }
+      fetch('/api/v1/messages',
+      { method: "POST",
+      credentials: "include",
+      body: JSON.stringify(fetchBody)})
+      .then(response => {
+        
+      })
+    }
   }
 
   componentDidMount(){
@@ -66,6 +81,9 @@ class ChatContainer extends Component {
     .then(response => {
       this.setState({ formMessage: "" })
     })
+    if (this.state.currentUserName != "Kyle Wood"){
+      setTimeout(function(){ this.eggplantEmoji()}.bind(this), 5000)
+    }
   }
 
   render(){
