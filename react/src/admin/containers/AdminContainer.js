@@ -60,6 +60,7 @@ class AdminContainer extends Component {
           userImage={match.user_image}
           superlike={match.superlike}
           unmatchUser={unmatchUser}
+          chatId={match.chatroom}
         />
       )
     })
