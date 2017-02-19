@@ -9,10 +9,10 @@ const AdminMatchTitle = props => {
   }
 
   return(
-    <div>
+    <div className="admin-match-tile">
       <img src={props.userImage}/>
-      <h3>{props.name} {flameIcon} </h3>
-      <button className="unmatch-button" onClick={props.unmatchUser}>Unmatch {props.userName}</button>
+      <h3>{props.userName} {flameIcon} </h3>
+      <button className="unmatch-button" onClick={props.unmatchUser}>Unmatch</button>
     </div>
   )
 }

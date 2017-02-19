@@ -1,0 +1,32 @@
+@import "_mixins";
+@import "_variables";
+
+.admin-match-tile {
+  background-color: white;
+  display: inline-block;
+  padding: 5%;
+  text-align: center;
+  margin: 5% 1%;
+  max-width: 50%;
+
+  img {
+    max-width: 50px;
+    max-height: 50px;
+  }
+
+  button {
+    margin-top: 2%;
+    padding: 3%;
+  }
+
+  @media(max-width: 450px) {
+    max-width: 300px;
+    display: block;
+    margin: 10% auto;
+  }
+}
+
+.unmatch-button:hover {
+  background-color: $background-white;
+  color: $kyle-red;
+}
