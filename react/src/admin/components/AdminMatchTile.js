@@ -12,6 +12,7 @@ const AdminMatchTitle = props => {
     <div className="admin-match-tile">
       <img src={props.userImage}/>
       <h3>{props.userName} {flameIcon} </h3>
+      <a href={`/chatrooms/${props.chatId}`}><button className="unmatch-button">Chat</button></a>
       <button className="unmatch-button" onClick={props.unmatchUser}>Unmatch</button>
     </div>
   )

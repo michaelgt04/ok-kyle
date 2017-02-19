@@ -16,6 +16,7 @@
 
   button {
     margin-top: 2%;
+    margin-right: 2%;
     padding: 3%;
   }
 
@@ -29,4 +30,8 @@
 .unmatch-button:hover {
   background-color: $background-white;
   color: $kyle-red;
+}
+
+.unmatch-button:focus {
+  outline: none;
 }

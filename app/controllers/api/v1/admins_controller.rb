@@ -21,7 +21,8 @@ class Api::V1::AdminsController < ApplicationController
     unique_matches = match_array.to_a.uniq { |match| match[:user_id]}
     unique_matches.each do |match|
       user = match.user
-        match_object = { match_id: match.id, user_id: user.id, user_name: user.name, user_image: user.image, superlike: superlike }
+      chatroom = Chatroom.find_by(user: user)
+        match_object = { match_id: match.id, user_id: user.id, user_name: user.name, user_image: user.image, superlike: superlike, chatroom: chatroom.id }
       user_matches << match_object
     end
     return user_matches
