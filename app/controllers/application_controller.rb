@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :current_user
+  helper_method :current_user, :authenticate_user!
 
   def current_user
     if signed_in_user
@@ -18,5 +18,11 @@ class ApplicationController < ActionController::Base
 
   def signed_in_admin
     !session[:admin_id].nil?
+  end
+
+  def authenticate_user!
+    unless signed_in_user || signed_in_admin
+      redirect_to root_path
+    end
   end
 end

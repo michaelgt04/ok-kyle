@@ -1,6 +1,7 @@
 class AdminsController < ApplicationController
 
   def index
+    authenticate_user!
   end
 
   def create
