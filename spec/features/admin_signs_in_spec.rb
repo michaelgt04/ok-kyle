@@ -11,7 +11,7 @@ describe "admin signs in" do
     click_button 'Log in'
 
     expect(page).to have_content('Sign Out')
-    expect(page).to have_content(admin.name)
+    expect(page).to have_css('div#admin-profile')
   end
 
   it "does not sign in successfully" do
@@ -20,6 +20,6 @@ describe "admin signs in" do
     click_button 'Log in'
 
     expect(page).to_not have_content('Sign Out')
-    expect(page).to_not have_content(admin.name)
+    expect(page).to have_content('Incorrect email or password')
   end
 end
