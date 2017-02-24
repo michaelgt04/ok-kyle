@@ -7,6 +7,8 @@ describe('PictureContainer', () => {
   let wrapper;
 
   beforeEach(() => {
+    window.jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
+    spyOn(PictureContainer.prototype,'swipeLeft').and.callThrough();
     wrapper = mount(<PictureContainer />);
   });
 
@@ -47,11 +49,42 @@ describe('PictureContainer', () => {
 
   describe('swipeLeft', () => {
 
-    it('should be invoked when the function assigned to the onClick property of the SwipeTile is invoked')
+    it('should be invoked when the function assigned to the onClick property of the SwipeTile is invoked', () => {
+      wrapper.find(SwipeTile).findWhere(n => n.prop('type') === 'left').simulate('click');
+      expect(PictureContainer.prototype.swipeLeft).toHaveBeenCalled();
+    });
 
-    // expect(wrapper.find(SwipeTile).length).toEqual(2);
+    it('should change the PictureContainer state appropriately', done => {
 
-    // .findWhere(type => 'left').onClick();
+      let currentPicture = wrapper.state( 'currentPicture');
 
+      console.log("current picture is number " + currentPicture);
+
+      wrapper.find(SwipeTile).findWhere(n => n.prop('type') === 'left').simulate('click');
+
+
+      setTimeout(() => {
+        expect(wrapper.state('currentPicture')).toEqual(currentPicture + 1)
+
+        console.log(wrapper.state('currentPicture'));
+        expect(wrapper.state('alert')).toEqual('')
+      }, 500);
+    });
+  });
+
+  describe('swipeRight', () => {
+    it('should be invoked when the function assigned to the onClick property of the SwipeTile is invoked', done => {
+
+      wrapper.find(SwipeTile).findWhere(n => n.prop('type') === 'right').simulate('click');
+
+      setTimeout(() => {
+        let currentPicture = wrapper.state({ currentPicture });
+        expect(wrapper.state({ currentPicture })).toEqual(currentPicture + 1)
+        expect(wrapper.state({alert })).toEqual("You have been matched with")
+      }, 500);
+
+      // expect(wrapper.state({ currentPicture })).toEqual(currentPicture + 1)
+
+    });
   });
 });
