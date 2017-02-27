@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AdminMatchTitle from '../components/AdminMatchTile'
+import AdminMatchTile from '../components/AdminMatchTile'
 
 class AdminContainer extends Component {
   constructor(props){
@@ -52,7 +52,7 @@ class AdminContainer extends Component {
       }
 
       return(
-        <AdminMatchTitle
+        <AdminMatchTile
           key={match.match_id}
           id={match.match_id}
           userId={match.user_id}
