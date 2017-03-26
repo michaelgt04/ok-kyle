@@ -3,13 +3,26 @@ import PictureTile from 'swipe/components/PictureTile';
 import SwipeTile from 'swipe/components/SwipeTile';
 import SuperLike from 'swipe/components/SuperLike';
 
-describe('PictureContainer', () => {
+describe('swipe/containers/PictureContainerSpec', () => {
   let wrapper;
+  let swipeLeft
 
   beforeEach(() => {
-    window.jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
-    spyOn(PictureContainer.prototype,'swipeLeft').and.callThrough();
-    wrapper = mount(<PictureContainer />);
+    spyOn(global, 'fetch').and.callFake(url => {
+      if(url.endsWith('/api/v1/kyles')){
+        return createResponseFromFixture('kyles/kylesIndex');
+      } else if (url.endsWith('api/v1/matches')){
+        return createResponseFromFixture('kyles/kylesCreate');
+      }
+    });
+
+    spyOn(PictureContainer.prototype, 'swipeLeft').and.callThrough();
+
+    spyOn(PictureContainer.prototype, 'createMatch').and.callThrough();
+
+    wrapper = mount(
+      <PictureContainer />
+    );
   });
 
   it('should have the specified initial state', () => {
@@ -24,11 +37,11 @@ describe('PictureContainer', () => {
     expect(wrapper.find(PictureTile)).toBePresent();
   });
 
-  xit('should render a PictureTile with specific props when currentPicture changes', done => {
+  it('should render a PictureTile with specific props when currentPicture changes', done => {
 
     setTimeout(() => {
       let image = wrapper.find(PictureTile).find('img').prop('src');
-      console.log(image)
+      done();
     }, 0);
 
   });
@@ -53,48 +66,73 @@ describe('PictureContainer', () => {
     expect(wrapper.find(SwipeTile).find('i').length).toEqual(2)
   })
 
-  xdescribe('swipeLeft', () => {
+  describe('swipeLeft', () => {
 
     it('should be invoked when the function assigned to the onClick property of the SwipeTile is invoked', () => {
-      wrapper.find(SwipeTile).findWhere(n => n.prop('type') === 'left').simulate('click');
+      let leftTile = wrapper.find(SwipeTile).findWhere(n => n.prop('type') === 'left');
+      leftTile.simulate('click');
 
       expect(PictureContainer.prototype.swipeLeft).toHaveBeenCalled();
     });
 
     it('should change the PictureContainer state appropriately', done => {
-
-      let currentPicture = wrapper.state( 'currentPicture');
-
-      console.log("current picture is number " + currentPicture);
-
-      wrapper.find(SwipeTile).findWhere(n => n.prop('type') === 'left').simulate('click');
-
+      let leftTile = wrapper.find(SwipeTile).findWhere(n => n.prop('type') === 'left');
 
       setTimeout(() => {
-        expect(wrapper.state('currentPicture')).toEqual(currentPicture + 1)
-
-        console.log(wrapper.state('currentPicture'));
-        expect(wrapper.state('alert')).toEqual('')
+        leftTile.props().handleSwipe();
+        expect(wrapper.state('currentPicture')).toEqual(1);
         done();
-      }, 500);
+      }, 0);
     });
   });
 
-  xdescribe('swipeRight', () => {
-    it('should be invoked when the function assigned to the onClick property of the SwipeTile is invoked', done => {
-      wrapper.debug()
-
-      wrapper.find(SwipeTile).findWhere(n => n.prop('type') === 'right').simulate('click');
+  describe('createMatch', () => {
+    it('should be invoked when the right tile is clicked', done => {
+      let rightTile = wrapper.find(SwipeTile).findWhere(n => n.prop('type') === 'right');
 
       setTimeout(() => {
-        let currentPicture = wrapper.state({ currentPicture });
-        expect(wrapper.state({ currentPicture })).toEqual(currentPicture + 1)
-        expect(wrapper.state({alert })).toEqual("You have been matched with")
+        rightTile.simulate('click');
+        expect(PictureContainer.prototype.createMatch).toHaveBeenCalled();
         done();
-      }, 500);
+      }, 0);
+    });
 
-      // expect(wrapper.state({ currentPicture })).toEqual(currentPicture + 1)
+    it('should be invoked when the superlike tile is clicked', done => {
+      let superLikeTile = wrapper.find(SuperLike);
 
+      setTimeout(() => {
+        superLikeTile.simulate('click');
+        expect(PictureContainer.prototype.createMatch).toHaveBeenCalled();
+        done();
+      }, 0);
+    });
+
+    it('should change the PictureContainer state appropriately when the right tile is clicked', done => {
+      let rightTile = wrapper.find(SwipeTile).findWhere(n => n.prop('type') === 'right');
+
+      setTimeout(() => {
+        rightTile.props().handleSwipe();
+
+        setTimeout(() => {
+          expect(wrapper.state('currentPicture')).toEqual(1);
+          expect(wrapper.state('alert')).toMatch("the Kyle of your dreams");
+          done();
+        }, 0);
+      }, 0);
+    });
+
+    it('should change the PictureContainer state appropriately when the superlike tile is clicked', done => {
+      let superLikeTile = wrapper.find(SuperLike);
+
+      setTimeout(() => {
+        superLikeTile.props().handleSwipe();
+
+        setTimeout(() => {
+          expect(wrapper.state('currentPicture')).toEqual(1);
+          expect(wrapper.state('alert')).toMatch("have super-liked");
+          done();
+        }, 0);
+      }, 0);
     });
   });
 });
