@@ -23,7 +23,7 @@ RSpec.configure do |config|
           'email' => 'kyle@keyan.com',
           'nickname' => '#1KyleFan'
         }
-}
+      }
 
 OmniAuth.config.add_mock(:facebook, omniauth_hash)
 end

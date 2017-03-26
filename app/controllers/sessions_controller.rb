@@ -37,7 +37,7 @@ class SessionsController < ApplicationController
       session[:admin_id] = admin.id
       redirect_to admins_path
     else
-      flash[:notice] = "problem"
+      flash[:notice] = "Incorrect email or password"
       redirect_to log_in_path
     end
   end
