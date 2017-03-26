@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AdminMatchTitle = props => {
+const AdminMatchTile = props => {
   let flameIcon;
   if(props.superlike){
     flameIcon = <img src="https://res.cloudinary.com/duor0bzmo/image/upload/v1486591055/glyphicons-23-fire_a0auay.png"/>
@@ -18,4 +18,4 @@ const AdminMatchTitle = props => {
   )
 }
 
-export default AdminMatchTitle;
+export default AdminMatchTile;

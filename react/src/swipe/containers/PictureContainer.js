@@ -55,13 +55,13 @@ class PictureContainer extends Component {
   }
 
   componentDidMount(){
-    $.ajax({
-        method: "GET",
-        url: "/api/v1/kyles",
-      })
-      .done(data => {
+    fetch('/api/v1/kyles')
+      .then(response => {
+        let pictures = response.json()
+        return pictures
+      }).then(pictures =>{
         this.setState({
-          pictures: data
+          pictures: pictures
         });
       })
   }
