@@ -35,7 +35,6 @@ describe('admin/containers/AdminContainerSpec', () => {
     it('should be invoked when an admin clicks on the unmatch button', done => {
       setTimeout(() => {
         let button = wrapper.find('#unmatch')
-        console.log(button.props())
         button.simulate('click');
 
         expect(AdminContainer.prototype.unmatchUser).toHaveBeenCalled();
@@ -46,7 +45,6 @@ describe('admin/containers/AdminContainerSpec', () => {
     it('should change the state of the admin container appropriately', done => {
       setTimeout(() => {
         let button = wrapper.find('#unmatch')
-        console.log(button.props())
         button.props().onClick();
 
         setTimeout(() => {
