@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AdminMatchTitle from '../components/AdminMatchTile'
+import AdminMatchTile from '../components/AdminMatchTile'
 
 class AdminContainer extends Component {
   constructor(props){
@@ -11,15 +11,15 @@ class AdminContainer extends Component {
   }
 
   componentDidMount(){
-    $.ajax({
-        method: "GET",
-        url: "/api/v1/admins",
-      })
-      .done(data => {
+    fetch('/api/v1/admins')
+      .then(response => {
+        let matches = response.json()
+        return matches
+      }).then(matches =>{
         this.setState({
-          matches: data.unique_matches_json
+          matches: matches.unique_matches_json
         });
-      })
+      });
   }
 
   unmatchUser(id){
@@ -38,6 +38,7 @@ class AdminContainer extends Component {
           let newMatches = response.json()
           return newMatches
         }).then((response) => {
+          debugger;
           this.setState({
           matches: response,
         })})
@@ -52,7 +53,7 @@ class AdminContainer extends Component {
       }
 
       return(
-        <AdminMatchTitle
+        <AdminMatchTile
           key={match.match_id}
           id={match.match_id}
           userId={match.user_id}

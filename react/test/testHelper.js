@@ -3,17 +3,23 @@ import jasmineEnzyme from 'jasmine-enzyme';
 import React from 'react';
 import $ from 'jquery';
 import 'jasmine-ajax';
+import createResponseFromFixture from './support/createResponseFromFixture';
 
 Object.assign(global, {
   jasmineEnzyme,
   mount,
   React,
   shallow,
-  $
+  $,
+  createResponseFromFixture
 });
 
 beforeEach(() => {
   jasmineEnzyme();
+});
+
+afterEach(() => {
+  if(global.page) { global.page.unmount(); }
 });
 
 // function to require all modules for a given context

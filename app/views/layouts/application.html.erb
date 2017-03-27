@@ -43,7 +43,11 @@
       </header>
       <div class="clear"></div>
     <% end %>
-    <%= flash[:notice] %>
+    <% unless flash[:notice].nil? %>
+      <div class='flash'>
+        <%= flash[:notice] %>
+      </div>
+    <%end%>
 
     <%= yield %>
 
