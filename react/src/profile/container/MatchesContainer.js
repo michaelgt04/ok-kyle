@@ -11,13 +11,15 @@ class MatchesContainer extends Component {
   }
 
   componentDidMount(){
-    $.ajax({
-        method: "GET",
-        url: "/api/v1/users",
-      })
-      .done(data => {
+    fetch("/api/v1/users", {
+      credentials: 'same-origin'
+    })
+      .then(response => {
+        let matches = response.json()
+        return matches
+      }).then(matches => {
         this.setState({
-          matches: data.kyle_json
+          matches: matches.kyle_json
         });
       })
   }
